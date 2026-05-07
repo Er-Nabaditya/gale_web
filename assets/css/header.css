@@ -1,0 +1,108 @@
+.gale-header {
+  background: #fff;
+  padding: 22px 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-logo img {
+  max-width: 140px;
+}
+
+.menu-list {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #14532d;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-icon {
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.signup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background: #3d7c4a;
+  color: #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* =========================
+   HEADER RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+  .header-wrapper {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .menu-list {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-right {
+    gap: 15px;
+  }
+
+  .signup-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+  .gale-header {
+    padding: 16px 0;
+  }
+
+  .header-logo img {
+    max-width: 110px;
+  }
+
+  .menu-list {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .menu-list li a {
+    font-size: 16px;
+  }
+
+  .header-right {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .header-icon {
+    font-size: 20px;
+  }
+}
