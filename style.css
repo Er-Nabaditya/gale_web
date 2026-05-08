@@ -11,10 +11,16 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: gale-livelihood-child
 */
 
+
 /* ── Google Fonts ── */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
-/* ── CSS Variables ── */
+/* ── Import Component CSS ── */
+@import url('assets/css/header.css');
+@import url('assets/css/home.css');
+@import url('assets/css/footer.css');
+
+/* ══ CSS VARIABLES ══════════════════════════ */
 :root {
     --green-dark:   #2d6a4f;
     --green-mid:    #40916c;
@@ -31,20 +37,29 @@ Text Domain: gale-livelihood-child
     --shadow:       0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* ── Base ── */
+/* ══ BASE RESET ═════════════════════════════ */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--font-body);
     color: var(--text-dark);
     background-color: var(--white);
     font-size: 16px;
     line-height: 1.7;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--text-dark);
     line-height: 1.3;
+    margin-top: 0;
 }
+
+p { margin-top: 0; }
 
 a {
     color: var(--green-dark);
@@ -53,6 +68,7 @@ a {
 
 a:hover {
     color: var(--green-mid);
+    text-decoration: none;
 }
 
 img {
@@ -60,439 +76,95 @@ img {
     height: auto;
 }
 
-/* ── Navbar ── */
-.navbar {
-    background-color: var(--white) !important;
-    border-bottom: 1px solid var(--cream-dark);
-    padding: 16px 0;
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 24px;
 }
 
-.navbar-brand img {
-    height: 45px;
+/* ══ SCROLL REVEAL ANIMATION ════════════════ */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.navbar-nav .nav-link {
-    color: var(--text-dark) !important;
-    font-size: 15px;
-    font-weight: 500;
-    padding: 8px 16px !important;
+.reveal-on-scroll.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.navbar-nav .nav-link:hover {
-    color: var(--green-dark) !important;
-}
+/* Stagger delay for grid items */
+.mission-card:nth-child(2),
+.why-item:nth-child(2),
+.testimonial-card:nth-child(2) { transition-delay: 0.1s; }
 
-.btn-signup {
-    background-color: var(--green-dark);
-    color: var(--white) !important;
-    border-radius: 25px;
-    padding: 8px 22px !important;
-    font-weight: 500;
-}
+.mission-card:nth-child(3),
+.why-item:nth-child(3),
+.testimonial-card:nth-child(3) { transition-delay: 0.2s; }
 
-.btn-signup:hover {
-    background-color: var(--green-mid);
-    color: var(--white) !important;
-}
+.mission-card:nth-child(4),
+.why-item:nth-child(4)         { transition-delay: 0.3s; }
 
-/* ── Hero Section ── */
-.gale-hero {
-    background-color: var(--cream);
-    padding: 80px 0;
-}
-
-.gale-hero h1 {
-    font-size: 52px;
-    font-weight: 700;
-    color: var(--green-dark);
-    line-height: 1.2;
-    margin-bottom: 20px;
-}
-
-.gale-hero p {
-    font-size: 16px;
-    color: var(--text-mid);
-    margin-bottom: 30px;
-    max-width: 420px;
-}
-
-.btn-explore {
-    background-color: var(--green-dark);
-    color: var(--white);
-    border-radius: 25px;
-    padding: 12px 28px;
-    font-weight: 500;
-    display: inline-block;
-    transition: all 0.3s;
-}
-
-.btn-explore:hover {
-    background-color: var(--green-mid);
-    color: var(--white);
-}
-
-.hero-image-wrap {
-    position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-}
-
-.hero-badge {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: var(--green-dark);
-    color: var(--white);
-    padding: 10px 18px;
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.hero-badge span {
-    display: block;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-/* ── Who We Are ── */
-.gale-who {
-    padding: 80px 0;
-    background-color: var(--white);
-}
-
-.gale-who h2 {
-    font-size: 36px;
-    color: var(--text-dark);
-    margin-bottom: 20px;
-}
-
-.gale-who p {
-    color: var(--text-mid);
-    margin-bottom: 30px;
-}
-
-.stat-block {
-    display: inline-block;
-    margin-right: 40px;
-}
-
-.stat-block .num {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--green-dark);
-    font-family: var(--font-heading);
-}
-
-.stat-block .label {
-    font-size: 13px;
-    color: var(--text-light);
-}
-
-/* ── Mission Section ── */
-.gale-mission {
-    padding: 80px 0;
-    background-color: var(--cream);
-    text-align: center;
-}
-
-.gale-mission h2 {
-    font-size: 36px;
-    margin-bottom: 12px;
-}
-
-.gale-mission .sub {
-    color: var(--text-mid);
-    margin-bottom: 50px;
-}
-
-.mission-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 30px 24px;
-    text-align: left;
-    box-shadow: var(--shadow);
-    height: 100%;
-}
-
-.mission-card .icon {
-    color: var(--green-dark);
-    font-size: 28px;
-    margin-bottom: 14px;
-}
-
-.mission-card h4 {
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-
-.mission-card p {
-    font-size: 14px;
-    color: var(--text-mid);
-}
-
-/* ── Products Section ── */
-.gale-products {
-    padding: 80px 0;
-    background-color: var(--white);
-    text-align: center;
-}
-
-.gale-products h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.gale-products .sub {
-    color: var(--text-mid);
-    margin-bottom: 50px;
-}
-
-.product-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    text-align: left;
-    transition: transform 0.3s;
-}
-
-.product-card:hover {
-    transform: translateY(-4px);
-}
-
-.product-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    background: #e0e0e0;
-}
-
-.product-card .card-body {
-    padding: 20px;
-}
-
-.product-card h4 {
-    font-size: 18px;
-    margin-bottom: 6px;
-}
-
-.product-card .desc {
-    font-size: 13px;
-    color: var(--text-mid);
-    margin-bottom: 12px;
-}
-
-.product-card .features li {
-    font-size: 13px;
-    color: var(--text-mid);
-    list-style: none;
-    padding: 2px 0;
-}
-
-.product-card .features li::before {
-    content: "✓ ";
-    color: var(--green-dark);
-    font-weight: 600;
-}
-
-.product-card .price {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin: 14px 0;
-}
-
-.btn-buynow {
-    background-color: var(--green-dark);
-    color: var(--white);
-    border-radius: 25px;
-    padding: 10px 22px;
-    font-size: 14px;
-    font-weight: 500;
-    display: inline-block;
-    transition: all 0.3s;
-    border: none;
-    width: 100%;
-    text-align: center;
-}
-
-.btn-buynow:hover {
-    background-color: var(--green-mid);
-    color: var(--white);
-}
-
-/* ── Why Choose Us ── */
-.gale-why {
-    padding: 80px 0;
-    background-color: var(--cream);
-}
-
-.gale-why h2 {
-    font-size: 36px;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.gale-why .sub {
-    text-align: center;
-    color: var(--text-mid);
-    margin-bottom: 50px;
-}
-
-.why-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 30px;
-}
-
-.why-icon {
-    width: 44px;
-    height: 44px;
-    background-color: var(--green-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--green-dark);
-    font-size: 20px;
-    flex-shrink: 0;
-}
-
-.why-item h5 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 4px;
-}
-
-.why-item p {
-    font-size: 13px;
-    color: var(--text-mid);
-    margin: 0;
-}
-
-/* ── Testimonials ── */
-.gale-testimonials {
-    padding: 80px 0;
-    background-color: var(--white);
-    text-align: center;
-}
-
-.gale-testimonials h2 {
-    font-size: 36px;
-    margin-bottom: 10px;
-}
-
-.testimonial-card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 28px;
-    box-shadow: var(--shadow);
-    text-align: left;
-    height: 100%;
-}
-
-.testimonial-card .quote {
-    font-size: 14px;
-    color: var(--text-mid);
-    font-style: italic;
-    margin-bottom: 20px;
-}
-
-.testimonial-card .author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.testimonial-card .author img {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.testimonial-card .author .name {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.testimonial-card .author .role {
-    font-size: 12px;
-    color: var(--text-light);
-}
-
-/* ── Footer ── */
-.gale-footer {
-    background-color: var(--green-dark);
-    color: var(--white);
-    padding: 60px 0 30px;
-}
-
-.gale-footer h5 {
-    color: var(--white);
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-.gale-footer p,
-.gale-footer a {
-    color: rgba(255,255,255,0.75);
-    font-size: 14px;
-    line-height: 2;
-}
-
-.gale-footer a:hover {
-    color: var(--white);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.15);
-    margin-top: 40px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.5);
-}
-
-/* ── WooCommerce Overrides ── */
-.woocommerce .price {
-    color: var(--green-dark) !important;
-    font-weight: 700;
-}
-
-.woocommerce button.button,
-.woocommerce a.button {
+/* ══ WOOCOMMERCE GLOBAL OVERRIDES ═══════════ */
+.woocommerce-store-notice,
+p.demo_store {
     background-color: var(--green-dark) !important;
-    color: var(--white) !important;
+}
+
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit {
+    background-color: var(--green-dark) !important;
+    color: #ffffff !important;
     border-radius: 25px !important;
     font-weight: 500 !important;
+    font-family: var(--font-body) !important;
+    transition: all 0.3s !important;
 }
 
+.woocommerce a.button:hover,
 .woocommerce button.button:hover,
-.woocommerce a.button:hover {
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover {
     background-color: var(--green-mid) !important;
+    color: #ffffff !important;
 }
 
-/* ── Responsive ── */
-@media (max-width: 768px) {
-    .gale-hero h1 {
-        font-size: 34px;
-    }
+.woocommerce .woocommerce-Price-amount,
+.woocommerce span.price,
+.woocommerce .price {
+    color: var(--text-dark) !important;
+    font-weight: 700;
+}
 
-    .gale-hero {
-        padding: 50px 0;
-        text-align: center;
-    }
+/* ══ UTILITY CLASSES ════════════════════════ */
+.text-green  { color: var(--green-dark); }
+.bg-cream    { background-color: var(--cream); }
+.bg-green    { background-color: var(--green-dark); }
+.text-center { text-align: center; }
 
-    .hero-image-wrap {
-        margin-top: 30px;
-    }
+/* Remove default WordPress/Understrap paddings on body */
+body.understrap-child #wrapper-navbar {
+    display: none !important;
+}
 
-    .stat-block {
-        margin-right: 20px;
-    }
+body.understrap-child #main-nav {
+    display: none !important;
+}
+
+/* Remove default page padding */
+.site-content {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#content {
+    padding: 0 !important;
+}
+
+.entry-content {
+    padding: 0 !important;
+    margin: 0 !important;
 }
