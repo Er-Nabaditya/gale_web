@@ -31,7 +31,8 @@
         <ul class="gale-nav-links" id="galeNavLinks">
           <li><a href="<?php echo esc_url(home_url('/')); ?>">About</a></li>
           <li><a href="<?php echo esc_url(home_url('/impact')); ?>">Impact</a></li>
-          <li><a href="<?php echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>">Products</a></li>
+          <!-- <li><a href="<?php //echo esc_url(get_permalink(wc_get_page_id('shop'))); ?>">Products</a></li> -->
+           <li><a href="http://gale-livelihood.local/shop/">Products</a></li>
           <li><a href="<?php echo esc_url(home_url('/contact')); ?>">Contact</a></li>
         </ul>
 
