@@ -1,4 +1,3 @@
-
 <?php
 
 get_header();
@@ -8,33 +7,33 @@ get_header();
      PAGE CONTENT
 ════════════════════════════════════════════ -->
 <div class="page">
- 
+
   <!-- Breadcrumb -->
   <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="#">Home</a>
+    <a href="http://gale-livelihood.local/">Home</a>
     <span class="breadcrumb__sep">›</span>
     <span>Products</span>
   </nav>
- 
+
   <!-- Page Hero -->
   <div class="page-hero">
     <h1>Our Products</h1>
     <p>Naturally sourced, traditionally processed, and ethically produced. Each product represents our commitment to quality and sustainability.</p>
   </div>
- 
+
   <!-- ── PRODUCT GRID ─────────────────────────── -->
   <section class="products" aria-label="Product listing">
     <div class="products__grid">
- 
+
       <!-- ── CARD 1: Cashew Nuts ── -->
       <article class="card">
         <div class="card__img-wrap">
           <!-- Replace src with your actual image path -->
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/cashew.png"
+
+            src="http://gale-livelihood.local/wp-content/uploads/2026/05/cashew-scaled.png"
             alt="Cashew Nuts"
-            loading="lazy"
-          />
+            loading="lazy" />
         </div>
         <div class="card__body">
           <h2 class="card__title">Cashew Nuts</h2>
@@ -51,15 +50,14 @@ get_header();
           </div>
         </div>
       </article>
- 
+
       <!-- ── CARD 2: Ground Nut Oil ── -->
       <article class="card">
         <div class="card__img-wrap">
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/groundnut-oil.png"
+            src="http://gale-livelihood.local/wp-content/uploads/2026/05/groundnut-oil-scaled.png"
             alt="Ground Nut Oil"
-            loading="lazy"
-          />
+            loading="lazy" />
         </div>
         <div class="card__body">
           <h2 class="card__title">Ground Nut Oil</h2>
@@ -76,15 +74,14 @@ get_header();
           </div>
         </div>
       </article>
- 
+
       <!-- ── CARD 3: Wada Kolam Rice ── -->
       <article class="card">
         <div class="card__img-wrap">
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/wada-kolam-rice.png"
+            src="http://gale-livelihood.local/wp-content/uploads/2026/05/wada-kolam-rice.png"
             alt="Wada Kolam Rice"
-            loading="lazy"
-          />
+            loading="lazy" />
         </div>
         <div class="card__body">
           <h2 class="card__title">Wada Kolam Rice</h2>
@@ -101,15 +98,14 @@ get_header();
           </div>
         </div>
       </article>
- 
+
       <!-- ── CARD 4: Pattravali Plates ── -->
       <article class="card">
         <div class="card__img-wrap">
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/patravali.png"
+            src="http://gale-livelihood.local/wp-content/uploads/2026/05/patravali.png"
             alt="Pattravali Plates"
-            loading="lazy"
-          />
+            loading="lazy" />
         </div>
         <div class="card__body">
           <h2 class="card__title">Pattravali Plates</h2>
@@ -126,13 +122,13 @@ get_header();
           </div>
         </div>
       </article>
- 
+
     </div><!-- .products__grid -->
   </section>
- 
+
 </div><!-- .page -->
- 
- 
+
+
 <!-- ════════════════════════════════════════════
      CAN'T FIND CTA
 ════════════════════════════════════════════ -->
@@ -143,9 +139,9 @@ get_header();
   <p>We work with local farmers to source a variety of natural products. Get in touch to discuss your requirements.</p>
   <a href="#" class="cta-strip__btn">Contact Us</a>
 </section>
- 
- 
- 
+
+
+
 <?php
 get_footer();
 ?>
