@@ -39,6 +39,12 @@ function gale_enqueue_styles()
 		'1.0.0'
 	);
 	wp_enqueue_style(
+    'gale-product-css',
+    get_stylesheet_directory_uri() . '/css/product.css',
+    array('gale-style'),
+    '1.0.0'
+   );
+	wp_enqueue_style(
 		'gale-footer-css',
 		get_stylesheet_directory_uri() . '/css/footer.css',
 		array('gale-style'),
