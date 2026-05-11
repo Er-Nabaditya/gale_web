@@ -19,12 +19,11 @@
       <nav class="gale-nav">
 
         <!-- Logo -->
+        <!-- Logo -->
         <a href="<?php echo esc_url(home_url('/')); ?>" class="gale-logo">
-          <?php if (has_custom_logo()) : ?>
-            <?php the_custom_logo(); ?>
-          <?php else : ?>
-            <span class="gale-logo-text">🌿 GALE</span>
-          <?php endif; ?>
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/logo_gale.png"
+            alt="Gale Livelihood"
+            class="gale-logo-img">
         </a>
 
         <!-- Nav Links -->

@@ -10,6 +10,7 @@ get_header();
 <!-- ══════════════════════════════════════════
      SECTION 1 — HERO
 ════════════════════════════════════════════ -->
+
 <section class="gale-hero">
   <div class="container">
     <div class="hero-inner">
@@ -25,22 +26,14 @@ get_header();
 
       <!-- Right Image -->
       <div class="hero-image-wrap">
-        <?php
-        $hero_img = get_field('hero_image');
-        if ($hero_img) : ?>
-          <img src="<?php echo esc_url($hero_img); ?>" alt="Gale Livelihood">
-        <?php else : ?>
-          <div class="hero-img-placeholder"></div>
-        <?php endif; ?>
+        <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/home_right_side.png"
+          alt="Gale Livelihood">
 
         <div class="hero-badge">
           <small>Livelihood Impact</small>
-          <span><?php echo esc_html(get_field('hero_badge_text') ?: '50+ Rural women and youth engaged'); ?></span>
+          <span>50+ Rural women and youth engaged</span>
         </div>
       </div>
-
-    </div>
-  </div>
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -359,8 +352,8 @@ get_header();
 
         <div class="contact-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.0!2d72.9!3d19.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDQyJzAwLjAiTiA3MsKwNTQnMDAuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
-            width="100%" height="200" style="border:0; border-radius:12px;"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120726.21974703483!2d73.03195472477269!3d18.98910064755441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e83e1f23f23d%3A0xe3a106c431e3fd0a!2sPanvel%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1778473040571!5m2!1sen!2sin"
+            width="100%" height="295" style="border:0; border-radius:12px;"
             allowfullscreen="" loading="lazy">
           </iframe>
         </div>
@@ -371,7 +364,7 @@ get_header();
         <h3>Send us a Message</h3>
         <?php
         if (function_exists('wpcf7_contact_form')) {
-          echo do_shortcode('[contact-form-7 id="1" title="Contact form 1"]');
+          echo do_shortcode('[contact-form-7 id="78b2446" title="Contact form 1"]');
         } else { ?>
           <form class="gale-contact-form" method="post">
             <div class="form-group">
@@ -388,7 +381,7 @@ get_header();
             </div>
             <div class="form-group">
               <label>Message</label>
-              <textarea name="message" placeholder="Tell us how we can help..." rows="4"></textarea>
+              <input name="message" placeholder="Tell us how we can help..." rows="2"></input>
             </div>
             <button type="submit" class="btn-send">Send Message</button>
           </form>
