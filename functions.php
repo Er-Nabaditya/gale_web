@@ -1,5 +1,7 @@
 <?php
+
 defined('ABSPATH') || exit;
+// require '/wp-content/themes/understrap-child-1.2.0/inc/woocommerce_products.php';
 
 function understrap_remove_scripts()
 {
@@ -20,6 +22,7 @@ function gale_enqueue_styles()
 		array(),
 		$ver
 	);
+
 	wp_enqueue_style(
 		'gale-style',
 		get_stylesheet_directory_uri() . '/style.css',

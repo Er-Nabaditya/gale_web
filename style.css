@@ -15,11 +15,10 @@ Text Domain: gale-livelihood-child
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap%27");
 
 /* ── Import Component CSS ── */
-@import url('assets/css/header.css');
-@import url('assets/css/home.css');
-@import url('assets/css/product.css');
-@import url('assets/css/footer.css');
-
+@import url("assets/css/header.css");
+@import url("assets/css/home.css");
+@import url("assets/css/product.css");
+@import url("assets/css/footer.css");
 
 /* ══ CSS VARIABLES ══════════════════════════ */
 :root {
@@ -33,6 +32,7 @@ Text Domain: gale-livelihood-child
   --text-light: #777777;
   --white: #ffffff;
   --font-heading: "Inter";
+  --font-heading-color: #2d5f3f;
   --font-body: "Inter";
   --radius: 12px;
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

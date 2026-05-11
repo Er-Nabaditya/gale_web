@@ -44,6 +44,10 @@ get_header();
     <div class="who-inner">
 
       <div class="who-image">
+        <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/who_are_we.jpg" alt="Who Are We">
+      </div>
+
+      <!-- <div class="who-image">
         <?php
         $who_img = get_field('who_image');
         if ($who_img) : ?>
@@ -51,7 +55,7 @@ get_header();
         <?php else : ?>
           <div class="who-img-placeholder"></div>
         <?php endif; ?>
-      </div>
+      </div> -->
 
       <div class="who-content">
         <h2>Who Are We?</h2>
@@ -113,6 +117,11 @@ get_header();
 <!-- ══════════════════════════════════════════
      SECTION 4 — PRODUCTS SLIDER
 ════════════════════════════════════════════ -->
+
+ <!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
+ print_r($productss); -->
+
+
 <section class="gale-products">
   <div class="container">
     <h2>Products</h2>
