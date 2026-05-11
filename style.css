@@ -11,160 +11,184 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: gale-livelihood-child
 */
 
-
 /* ── Google Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap%27");
 
 /* ── Import Component CSS ── */
-@import url('assets/css/header.css');
-@import url('assets/css/home.css');
-@import url('assets/css/footer.css');
+@import url("assets/css/header.css");
+@import url("assets/css/home.css");
+@import url("assets/css/footer.css");
 
 /* ══ CSS VARIABLES ══════════════════════════ */
 :root {
-    --green-dark:   #2d6a4f;
-    --green-mid:    #40916c;
-    --green-light:  #d8f3dc;
-    --cream:        #f8f6f0;
-    --cream-dark:   #ede8dc;
-    --text-dark:    #1b1b1b;
-    --text-mid:     #4a4a4a;
-    --text-light:   #777777;
-    --white:        #ffffff;
-    --font-heading: 'Playfair Display', serif;
-    --font-body:    'Inter', sans-serif;
-    --radius:       12px;
-    --shadow:       0 4px 20px rgba(0,0,0,0.08);
+  --green-dark: #2d5f3f;
+  --green-mid: #40916c;
+  --green-light: #d8f3dc;
+  --cream: #f8f6f0;
+  --cream-dark: #ede8dc;
+  --text-dark: #1b1b1b;
+  --text-mid: #4a4a4a;
+  --text-light: #777777;
+  --white: #ffffff;
+  --font-heading: "Inter";
+  --font-body: "Inter";
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* ══ BASE RESET ═════════════════════════════ */
-*, *::before, *::after {
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-    font-family: var(--font-body);
-    color: var(--text-dark);
-    background-color: var(--white);
-    font-size: 16px;
-    line-height: 1.7;
-    margin: 0;
-    padding: 0;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--white);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    color: var(--text-dark);
-    line-height: 1.3;
-    margin-top: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  line-height: 1.3;
+  margin-top: 0;
 }
 
-p { margin-top: 0; }
+p {
+  margin-top: 0;
+}
 
 a {
-    color: var(--green-dark);
-    text-decoration: none;
+  color: var(--green-dark);
+  text-decoration: none;
 }
 
 a:hover {
-    color: var(--green-mid);
-    text-decoration: none;
+  color: var(--green-mid);
+  text-decoration: none;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .container {
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 0 24px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 /* ══ SCROLL REVEAL ANIMATION ════════════════ */
 .reveal-on-scroll {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 }
 
 .reveal-on-scroll.revealed {
-    opacity: 1;
-    transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Stagger delay for grid items */
 .mission-card:nth-child(2),
 .why-item:nth-child(2),
-.testimonial-card:nth-child(2) { transition-delay: 0.1s; }
+.testimonial-card:nth-child(2) {
+  transition-delay: 0.1s;
+}
 
 .mission-card:nth-child(3),
 .why-item:nth-child(3),
-.testimonial-card:nth-child(3) { transition-delay: 0.2s; }
+.testimonial-card:nth-child(3) {
+  transition-delay: 0.2s;
+}
 
 .mission-card:nth-child(4),
-.why-item:nth-child(4)         { transition-delay: 0.3s; }
+.why-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
 
 /* ══ WOOCOMMERCE GLOBAL OVERRIDES ═══════════ */
 .woocommerce-store-notice,
 p.demo_store {
-    background-color: var(--green-dark) !important;
+  background-color: var(--green-dark) !important;
 }
 
 .woocommerce a.button,
 .woocommerce button.button,
 .woocommerce input.button,
 .woocommerce #respond input#submit {
-    background-color: var(--green-dark) !important;
-    color: #ffffff !important;
-    border-radius: 25px !important;
-    font-weight: 500 !important;
-    font-family: var(--font-body) !important;
-    transition: all 0.3s !important;
+  background-color: var(--green-dark) !important;
+  color: #ffffff !important;
+  border-radius: 25px !important;
+  font-weight: 500 !important;
+  font-family: var(--font-body) !important;
+  transition: all 0.3s !important;
 }
 
 .woocommerce a.button:hover,
 .woocommerce button.button:hover,
 .woocommerce input.button:hover,
 .woocommerce #respond input#submit:hover {
-    background-color: var(--green-mid) !important;
-    color: #ffffff !important;
+  background-color: var(--green-mid) !important;
+  color: #ffffff !important;
 }
 
 .woocommerce .woocommerce-Price-amount,
 .woocommerce span.price,
 .woocommerce .price {
-    color: var(--text-dark) !important;
-    font-weight: 700;
+  color: var(--text-dark) !important;
+  font-weight: 700;
 }
 
 /* ══ UTILITY CLASSES ════════════════════════ */
-.text-green  { color: var(--green-dark); }
-.bg-cream    { background-color: var(--cream); }
-.bg-green    { background-color: var(--green-dark); }
-.text-center { text-align: center; }
+.text-green {
+  color: var(--green-dark);
+}
+.bg-cream {
+  background-color: var(--cream);
+}
+.bg-green {
+  background-color: var(--green-dark);
+}
+.text-center {
+  text-align: center;
+}
 
 /* Remove default WordPress/Understrap paddings on body */
 body.understrap-child #wrapper-navbar {
-    display: none !important;
+  display: none !important;
 }
 
 body.understrap-child #main-nav {
-    display: none !important;
+  display: none !important;
 }
 
 /* Remove default page padding */
 .site-content {
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 #content {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .entry-content {
-    padding: 0 !important;
-    margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
