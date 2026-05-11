@@ -15,16 +15,11 @@ Text Domain: gale-livelihood-child
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap%27");
 
 /* ── Import Component CSS ── */
-<<<<<<< HEAD
+
 @import url('assets/css/header.css');
 @import url('assets/css/home.css');
 @import url('assets/css/product.css');
 @import url('assets/css/footer.css');
-=======
-@import url("assets/css/header.css");
-@import url("assets/css/home.css");
-@import url("assets/css/footer.css");
->>>>>>> c326311638f20c9e2ad3901d9a14a80966b2e512
 
 /* ══ CSS VARIABLES ══════════════════════════ */
 :root {

@@ -31,7 +31,7 @@ get_header();
         <div class="card__img-wrap">
           <!-- Replace src with your actual image path -->
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/Container.png"
+            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/cashew.png"
             alt="Cashew Nuts"
             loading="lazy"
           />
@@ -56,7 +56,7 @@ get_header();
       <article class="card">
         <div class="card__img-wrap">
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/Container-3.png"
+            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/groundnut-oil.png"
             alt="Ground Nut Oil"
             loading="lazy"
           />
@@ -81,7 +81,7 @@ get_header();
       <article class="card">
         <div class="card__img-wrap">
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/Container-5.png"
+            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/wada-kolam-rice.png"
             alt="Wada Kolam Rice"
             loading="lazy"
           />
@@ -106,7 +106,7 @@ get_header();
       <article class="card">
         <div class="card__img-wrap">
           <img
-            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/Container-6.png"
+            src="http://Gale-livelihood.local/wp-content/uploads/2026/05/patravali.png"
             alt="Pattravali Plates"
             loading="lazy"
           />
