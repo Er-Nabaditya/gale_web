@@ -1,17 +1,6 @@
 <!-- ── FOOTER ── -->
 
-<!-- CTA Banner -->
-<section class="gale-cta-banner">
-  <div class="container">
-    <h2>Be a Part of the Change</h2>
-    <p>Support sustainable livelihoods while choosing natural, high-quality products that make a real difference.</p>
-    <div class="cta-buttons">
-      <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn-outline-white">Enquire Now</a>
-      <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn-outline-white">Partner With Us</a>
-    </div>
-    <p class="cta-tagline">Naturally Sourced. Socially Driven.</p>
-  </div>
-</section>
+
 
 <!-- Main Footer -->
 <footer class="gale-footer">
