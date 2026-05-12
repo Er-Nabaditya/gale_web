@@ -31,7 +31,7 @@ get_header();
 
         <div class="hero-badge">
           <small>Livelihood Impact</small>
-          <span>50+ Rural women and youth engaged</span>
+          <span class="num_bold">50+ </span><span>Rural women and youth engaged</span>
         </div>
       </div>
 </section>
@@ -87,16 +87,18 @@ get_header();
     <div class="mission-grid">
       <?php
       $default_cards = [
-        ['icon' => '👥', 'title' => 'Supporting Local Farmers',    'desc' => 'Working directly with tribal farmers to ensure fair practices and sustainable livelihoods.'],
-        ['icon' => '🏛️', 'title' => 'Empowering Tribal Women',   'desc' => 'Creating skill development opportunities and dignified employment for women.'],
-        ['icon' => '🌱', 'title' => 'Sustainable Development',    'desc' => 'Promoting environmentally conscious resource management.'],
-        ['icon' => '❤️', 'title' => 'Local Employment',           'desc' => 'Establishing processing facilities that create jobs within the community.'],
+        ['icon' => 'http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_2.png',  'title' => 'Supporting Local Farmers', 'desc' => 'Working directly with tribal farmers to ensure fair practices and sustainable livelihoods.'],
+        ['icon' => 'http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_3.png',    'title' => 'Empowering Tribal Women',  'desc' => 'Creating skill development opportunities and dignified employment for women.'],
+        ['icon' => 'http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_4.png',  'title' => 'Sustainable Development', 'desc' => 'Promoting environmentally conscious resource management.'],
+        ['icon' => 'http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_5.png',   'title' => 'Local Employment',        'desc' => 'Establishing processing facilities that create jobs within the community.'],
       ];
 
       if (have_rows('mission_cards')) :
         while (have_rows('mission_cards')) : the_row(); ?>
           <div class="mission-card">
-            <div class="mission-icon"><?php echo esc_html(get_sub_field('card_icon')); ?></div>
+            <div class="mission-icon">
+              <img src="<?php echo esc_url(get_sub_field('card_icon')); ?>" alt="<?php echo esc_attr(get_sub_field('card_title')); ?>">
+            </div>
             <h4><?php echo esc_html(get_sub_field('card_title')); ?></h4>
             <p><?php echo esc_html(get_sub_field('card_desc')); ?></p>
           </div>
@@ -104,7 +106,9 @@ get_header();
       else :
         foreach ($default_cards as $card) : ?>
           <div class="mission-card">
-            <div class="mission-icon"><?php echo $card['icon']; ?></div>
+            <div class="mission-icon">
+              <img src="<?php echo esc_url($card['icon']); ?>" alt="<?php echo esc_attr($card['title']); ?>">
+            </div>
             <h4><?php echo esc_html($card['title']); ?></h4>
             <p><?php echo esc_html($card['desc']); ?></p>
           </div>
@@ -118,7 +122,7 @@ get_header();
      SECTION 4 — PRODUCTS SLIDER
 ════════════════════════════════════════════ -->
 
- <!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
+<!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
  print_r($productss); -->
 
 
@@ -201,31 +205,42 @@ get_header();
 
     <div class="farm-steps">
       <div class="farm-step">
-        <div class="farm-icon">🌱</div>
+        <div class="farm-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_6.png" alt="Cultivation">
+        </div>
         <div class="farm-line"></div>
         <h5>Cultivation</h5>
         <p>Local farmers grow crops using sustainable, organic methods</p>
       </div>
       <div class="farm-step">
-        <div class="farm-icon">🤲</div>
+        <div class="farm-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_7.png" alt="Harvesting">
+        </div>
         <div class="farm-line"></div>
         <h5>Harvesting</h5>
         <p>Careful hand-harvesting to ensure quality and minimize waste</p>
       </div>
       <div class="farm-step">
-        <div class="farm-icon">⚙️</div>
+        <div class="farm-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_8.png" alt="Processing">
+        </div>
         <div class="farm-line"></div>
         <h5>Processing</h5>
         <p>Traditional processing techniques preserve natural goodness</p>
       </div>
       <div class="farm-step">
-        <div class="farm-icon">📦</div>
+        <div class="farm-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_9.png" alt="Packaging">
+        </div>
         <div class="farm-line last"></div>
         <h5>Packaging</h5>
         <p>Hygienic packaging maintains freshness from farm to you</p>
       </div>
     </div>
   </div>
+
+  <!-- Tree image bottom right -->
+  <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Object.png" alt="" class="farm-tree-bg">
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -238,35 +253,45 @@ get_header();
 
     <div class="why-grid">
       <div class="why-item">
-        <div class="why-icon">🌿</div>
+        <div class="why-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_10.png" alt="Natural">
+        </div>
         <div class="why-text">
           <h5>100% Natural &amp; Ethical</h5>
           <p>No chemicals, no shortcuts—just pure, natural products</p>
         </div>
       </div>
       <div class="why-item">
-        <div class="why-icon">👥</div>
+        <div class="why-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_11.png" alt="Community">
+        </div>
         <div class="why-text">
           <h5>Community-Driven</h5>
           <p>Every purchase directly supports tribal families and their livelihoods</p>
         </div>
       </div>
       <div class="why-item">
-        <div class="why-icon">❤️</div>
+        <div class="why-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_12.png" alt="Livelihoods">
+        </div>
         <div class="why-text">
           <h5>Supports Livelihoods</h5>
           <p>Creating sustainable income opportunities for marginalized communities</p>
         </div>
       </div>
       <div class="why-item">
-        <div class="why-icon">👁️</div>
+        <div class="why-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_13.png" alt="Sourcing">
+        </div>
         <div class="why-text">
           <h5>Transparent Sourcing</h5>
           <p>Know exactly where your food comes from and who grows it</p>
         </div>
       </div>
       <div class="why-item">
-        <div class="why-icon">⭐</div>
+        <div class="why-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_14.png" alt="Quality">
+        </div>
         <div class="why-text">
           <h5>High-Quality Processing</h5>
           <p>Traditional methods combined with modern hygiene standards</p>
@@ -274,6 +299,9 @@ get_header();
       </div>
     </div>
   </div>
+
+  <!-- Tree image bottom right -->
+  <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Object_why.png" alt="" class="why-tree-bg">
 </section>
 
 <!-- ══════════════════════════════════════════
@@ -286,10 +314,14 @@ get_header();
 
     <div class="testimonials-grid">
       <div class="testimonial-card">
-        <div class="quote-icon">❝</div>
+        <div class="quote-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_quoted.png" alt="quote">
+        </div>
         <p class="quote-text">"This initiative has helped us earn a stable income and support our families. We are grateful for the opportunity to work with dignity."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">SP</div>
+          <div class="author-avatar">
+            <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Container.png" alt="Savita Patel">
+          </div>
           <div>
             <div class="author-name">Savita Patel</div>
             <div class="author-role">Local Worker, Gale Village</div>
@@ -297,10 +329,14 @@ get_header();
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="quote-icon">❝</div>
+        <div class="quote-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_quoted.png" alt="quote">
+        </div>
         <p class="quote-text">"Being part of this center has given me skills and confidence. Now I can contribute to my household and feel empowered."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">RT</div>
+          <div class="author-avatar">
+            <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/ImageWithFallback.png" alt="Ravi Thakur">
+          </div>
           <div>
             <div class="author-name">Ravi Thakur</div>
             <div class="author-role">Cashew Processing Worker</div>
@@ -308,10 +344,14 @@ get_header();
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="quote-icon">❝</div>
+        <div class="quote-icon">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Icon_quoted.png" alt="quote">
+        </div>
         <p class="quote-text">"The support from Gale Livelihood Centre has transformed our village. We now have hope for a better future for our children."</p>
         <div class="testimonial-author">
-          <div class="author-avatar">KD</div>
+          <div class="author-avatar">
+            <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Container_1.png" alt="Kamala Desai">
+          </div>
           <div>
             <div class="author-name">Kamala Desai</div>
             <div class="author-role">Farmer, Gale Village</div>
@@ -398,6 +438,18 @@ get_header();
       </div>
 
     </div>
+  </div>
+</section>
+<!-- CTA Banner -->
+<section class="gale-cta-banner">
+  <div class="container">
+    <h2>Be a Part of the Change</h2>
+    <p>Support sustainable livelihoods while choosing natural, high-quality products that make a real difference.</p>
+    <div class="cta-buttons">
+      <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn-outline-white">Enquire Now</a>
+      <a href="<?php echo esc_url(home_url('/contact')); ?>" class="btn-outline-white">Partner With Us</a>
+    </div>
+    <p class="cta-tagline">Naturally Sourced. Socially Driven.</p>
   </div>
 </section>
 

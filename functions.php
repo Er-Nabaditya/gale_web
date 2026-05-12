@@ -22,7 +22,6 @@ function gale_enqueue_styles()
 		array(),
 		$ver
 	);
-
 	wp_enqueue_style(
 		'gale-style',
 		get_stylesheet_directory_uri() . '/style.css',
@@ -42,11 +41,11 @@ function gale_enqueue_styles()
 		'1.0.0'
 	);
 	wp_enqueue_style(
-    'gale-product-css',
-    get_stylesheet_directory_uri() . '/css/product.css',
-    array('gale-style'),
-    '1.0.0'
-   );
+		'gale-product-css',
+		get_stylesheet_directory_uri() . '/css/product.css',
+		array('gale-style'),
+		'1.0.0'
+	);
 	wp_enqueue_style(
 		'gale-footer-css',
 		get_stylesheet_directory_uri() . '/css/footer.css',

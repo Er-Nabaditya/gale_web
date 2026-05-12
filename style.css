@@ -22,6 +22,7 @@ Text Domain: gale-livelihood-child
 
 /* ══ CSS VARIABLES ══════════════════════════ */
 :root {
+  --button-green: #4a7c59;
   --green-dark: #2d5f3f;
   --green-mid: #40916c;
   --green-light: #d8f3dc;
@@ -49,7 +50,7 @@ body {
   font-family: var(--font-body);
   color: var(--text-dark);
   background-color: var(--white);
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.7;
   margin: 0;
   padding: 0;
@@ -87,7 +88,7 @@ img {
 }
 
 .container {
-  max-width: 1160px;
+  max-width: 1216px;
   margin: 0 auto;
   padding: 0 24px;
 }
