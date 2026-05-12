@@ -103,3 +103,11 @@ function add_child_theme_textdomain()
 add_action('after_setup_theme', 'add_child_theme_textdomain');
 
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
+
+
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 ); // removes "added to cart" notices
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count',       20 ); // removes "Showing all 4 results"
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   30 ); // removes "Default sorting" dropdown
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+remove_action( 'woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10 );

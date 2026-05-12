@@ -220,12 +220,12 @@ body {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 1.5px solid var(--clr-check);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%233a7a34' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-image: url("http://gale-livelihood.local/wp-content/uploads/2026/05/tick-icon.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 10px 10px;
 }
+
 
 /* ── Card Footer ── */
 .card__footer {
