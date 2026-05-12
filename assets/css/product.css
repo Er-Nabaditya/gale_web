@@ -274,6 +274,7 @@ padding-left: 16px;
   white-space: nowrap;
   transition: background .2s ease, transform .15s ease;
   letter-spacing: .01em;
+  text-align: center;
 }
 .card__btn:hover {
   background: #1f4219;
