@@ -142,6 +142,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: transform .25s ease, box-shadow .25s ease;
+  width: 382px;
 }
 .card:hover {
   transform: translateY(-4px);
@@ -286,17 +287,16 @@ padding-left: 16px;
    CTA STRIP
 ══════════════════════════════ */
 .cta-strip {
-  background: var(--clr-green);
+  background:#F5F3ED;
   color: #fff;
   text-align: center;
   padding: 64px 24px;
-  margin-top: 64px;
+  
 }
 .cta-strip__icon {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   margin: 0 auto 20px;
-  opacity: .75;
 }
 .cta-strip__icon svg {
   width: 100%;
@@ -304,29 +304,34 @@ padding-left: 16px;
   fill: #fff;
 }
 .cta-strip h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  margin-bottom: 12px;
-  line-height: 1.2;
+     font-family: inter, sans-serif;
+    font-size: 36px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    line-height: 40px;
+    color: #2D5F3F;
 }
 .cta-strip p {
-  font-size: .95rem;
-  opacity: .85;
-  max-width: 480px;
-  margin: 0 auto 28px;
-  line-height: 1.7;
+     font-size: 18px;
+    opacity: .85;
+    max-width: 650px;
+    margin: 0 auto 28px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #6B8E7C;
 }
 .cta-strip__btn {
   display: inline-block;
-  background: #fff;
-  color: var(--clr-green);
-  font-family: var(--font-body);
-  font-size: .9rem;
-  font-weight: 600;
-  padding: 12px 32px;
-  border-radius: var(--radius-btn);
-  text-decoration: none;
-  transition: background .2s, color .2s, transform .15s;
+    background: #4A7C59;
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 32px;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    transition: background .2s, color .2s, transform .15s;
+    line-height: 28px;
 }
 .cta-strip__btn:hover {
   background: var(--clr-green-light);

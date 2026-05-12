@@ -6,10 +6,6 @@
  */
 get_header();
 ?>
-
-<!-- ════════════════════════════════════════════
-     PAGE CONTENT — matches homepage container
-════════════════════════════════════════════ -->
 <div class="products-page-wrap">
   <div class="container">
 
@@ -96,7 +92,7 @@ get_header();
           </div>
           <div class="card__body">
             <h2 class="card__title">Pattravali Plates</h2>
-            <p class="card__desc">A testament to sustainable living and eco-conscious choices.</p>
+            <p class="card__desc">Pattravali Plates are a testament to sustainable living and eco-conscious.</p>
             <ul class="card__features">
               <li>Reduce your environmental impact</li>
               <li>Made from naturally fallen leaves</li>
@@ -119,7 +115,7 @@ get_header();
 
 <!-- CAN'T FIND CTA -->
 <section class="cta-strip">
-  <div class="cta-strip__icon" aria-hidden="true"></div>
+  <div class="cta-strip__icon" aria-hidden="true"><img src="http://Gale-livelihood.local/wp-content/uploads/2026/05/leaf-icon.png" alt="icon" /></div>
   <h2>Can't Find What You're Looking For?</h2>
   <p>We work with local farmers to source a variety of natural products. Get in touch to discuss your requirements.</p>
   <a href="<?php echo esc_url( home_url('/#contact') ); ?>" class="cta-strip__btn">Contact Us</a>
