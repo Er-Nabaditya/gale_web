@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Template Name: Product Archive
+ * Template Post Type: page
+ */
 get_header();
 ?>
 
