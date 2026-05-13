@@ -1,0 +1,36 @@
+.cart-layout{
+    display:flex;
+    gap:32px;
+    align-items:flex-start;
+}
+
+.cart-left{
+    width:70%;
+}
+
+.cart-right{
+    width:30%;
+    position:sticky;
+    top:20px;
+}
+
+.cart-card{
+    display:flex;
+    gap:20px;
+    background:#fff;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:20px;
+    position:relative;
+}
+
+.cart-card-image img{
+    width:120px;
+    border-radius:12px;
+}
+
+.cart-summary{
+    background:#fff;
+    padding:24px;
+    border-radius:16px;
+}
