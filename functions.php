@@ -30,25 +30,25 @@ function gale_enqueue_styles()
     );
     wp_enqueue_style(
         'gale-header-css',
-        get_stylesheet_directory_uri() . '/css/header.css',
+        get_stylesheet_directory_uri() . '/assets/css/header.css',
         array('gale-style'),
         '1.0.0'
     );
     wp_enqueue_style(
         'gale-home-css',
-        get_stylesheet_directory_uri() . '/css/home.css',
+        get_stylesheet_directory_uri() . '/assets/css/home.css',
         array('gale-style'),
         '1.0.0'
     );
     wp_enqueue_style(
         'gale-product-css',
-        get_stylesheet_directory_uri() . '/css/product.css',
+        get_stylesheet_directory_uri() . '/assets/css/product.css',
         array('gale-style'),
         '1.0.0'
     );
     wp_enqueue_style(
         'gale-footer-css',
-        get_stylesheet_directory_uri() . '/css/footer.css',
+        get_stylesheet_directory_uri() . '/assets/css/footer.css',
         array('gale-style'),
         '1.0.0'
     );
