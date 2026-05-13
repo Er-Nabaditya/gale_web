@@ -120,6 +120,14 @@ get_header();
 </section>
 
 
+<<<<<<< HEAD
+=======
+<!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
+ print_r($productss); -->
+
+
+
+>>>>>>> origin/sheetal-dev
 
 <!-- ══════════════════════════════════════════
      SECTION 5 — FROM FARM TO PACK
