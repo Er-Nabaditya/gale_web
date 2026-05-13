@@ -26,9 +26,10 @@ get_header();
 
       <!-- Right Image -->
       <div class="hero-image-wrap">
-        <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/home_right_side.png"
-          alt="Gale Livelihood">
-
+        <div class="hero-image-inner">
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/home_right_side.png"
+            alt="Gale Livelihood">
+        </div>
         <div class="hero-badge">
           <small>Livelihood Impact</small>
           <span class="num_bold">50+ </span><span>Rural women and youth engaged</span>
