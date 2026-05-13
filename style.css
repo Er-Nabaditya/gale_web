@@ -154,7 +154,7 @@ p.demo_store {
 .woocommerce .woocommerce-Price-amount,
 .woocommerce span.price,
 .woocommerce .price {
-  color: var(--text-dark);
+  color: var(--text-dark) !important;
   font-weight: 700;
 }
 
