@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Single Product Template
@@ -161,69 +160,69 @@ do_action( 'woocommerce_before_main_content' );
 
                 </section>
 
-                <!-- Feature Cards -->
-                <section class="product-feature-cards">
+<?php
 
-                    <div class="feature-card">
+$product_features = get_post_meta(
+    $post_id,
+    '_product_features',
+    true
+);
+?>
 
-                        <div class="feature-icon">
-                            🌿
-                        </div>
+<?php if ( ! empty( $product_features ) ) : ?>
 
-                        <h4>100% Natural</h4>
+    <section class="product-feature-cards">
 
-                        <p>
-                            Chemical-free processing
-                        </p>
+        <?php foreach ( $product_features as $feature ) : ?>
 
-                    </div>
+            <div class="feature-card">
 
-                    <div class="feature-card">
+                <!-- ICON -->
+                <?php if ( ! empty( $feature['icon'] ) ) : ?>
 
-                        <div class="feature-icon">
-                            🤝
-                        </div>
+                    <div class="feature-icon">
 
-                        <h4>Hand Processed</h4>
-
-                        <p>
-                            Only skilled local workers
-                        </p>
+                        <img
+                            src="<?php echo esc_url( $feature['icon'] ); ?>"
+                            alt="<?php echo esc_attr( $feature['title'] ); ?>"
+                        >
 
                     </div>
 
-                    <div class="feature-card">
+                <?php endif; ?>
 
-                        <div class="feature-icon">
-                            ❤️
-                        </div>
+                <!-- TITLE -->
+                <?php if ( ! empty( $feature['title'] ) ) : ?>
 
-                        <h4>Rich in Nutrients</h4>
+                    <h4>
 
-                        <p>
-                            Vitamins & minerals
-                        </p>
+                        <?php echo esc_html( $feature['title'] ); ?>
 
-                    </div>
+                    </h4>
 
-                    <div class="feature-card">
+                <?php endif; ?>
 
-                        <div class="feature-icon">
-                            🧑‍🌾
-                        </div>
+                <!-- CONTENT -->
+                <?php if ( ! empty( $feature['content'] ) ) : ?>
 
-                        <h4>Supports Farmers</h4>
+                    <p>
 
-                        <p>
-                            Direct from local community
-                        </p>
+                        <?php echo esc_html( $feature['content'] ); ?>
 
-                    </div>
+                    </p>
 
-                </section>
+                <?php endif; ?>
+
+            </div>
+
+        <?php endforeach; ?>
+
+    </section>
+
+<?php endif; ?>
 
                 <!-- Cultivation Section -->
-                <?php if ( $cultivation ) : ?>
+             <?php   if ( $cultivation ) : ?>
 
                     <section class="product-info-section cultivation-section">
 
@@ -250,7 +249,7 @@ do_action( 'woocommerce_before_main_content' );
                             Health Benefits
                         </h2>
 
-                        <div class="section-content-box">
+                        <div class="section-content-box health-benefits card__features">
 
                             <?php echo wp_kses_post( $health_benefits ); ?>
 
@@ -349,4 +348,4 @@ do_action( 'woocommerce_sidebar' );
 
 get_footer( 'shop' );
 ?>
-```
+

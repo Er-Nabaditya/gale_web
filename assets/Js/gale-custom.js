@@ -39,32 +39,14 @@
     }
 
     // ══ 3. PRODUCTS SLIDER ══════════════════
+    // ══ PRODUCTS SLIDER ══
     const slider = document.getElementById("productsSlider");
     const prevBtn = document.getElementById("sliderPrev");
     const nextBtn = document.getElementById("sliderNext");
     const dotsWrap = document.getElementById("sliderDots");
 
     if (slider && prevBtn && nextBtn) {
-      const slides = slider.querySelectorAll(".product-slide");
-      const totalSlides = slides.length;
       let currentIndex = 0;
-      let slidesVisible = getSlidesVisible();
-
-      // Build dots
-      function buildDots() {
-        if (!dotsWrap) return;
-        dotsWrap.innerHTML = "";
-        const totalDots = Math.ceil(totalSlides / slidesVisible);
-        for (let i = 0; i < totalDots; i++) {
-          const dot = document.createElement("button");
-          dot.classList.add("slider-dot");
-          if (i === 0) dot.classList.add("active");
-          dot.addEventListener("click", function () {
-            goToSlide(i * slidesVisible);
-          });
-          dotsWrap.appendChild(dot);
-        }
-      }
 
       function getSlidesVisible() {
         if (window.innerWidth <= 600) return 1;
@@ -72,49 +54,67 @@
         return 3;
       }
 
-      function getSlideWidth() {
-        if (slides.length === 0) return 0;
-        const slide = slides[0];
-        const gap = 24;
-        return slide.offsetWidth + gap;
+      function getSlides() {
+        return slider.querySelectorAll(".product-slide");
       }
 
-      function goToSlide(index) {
-        slidesVisible = getSlidesVisible();
-        const maxIndex = Math.max(0, totalSlides - slidesVisible);
-        currentIndex = Math.min(Math.max(index, 0), maxIndex);
-        const offset = currentIndex * getSlideWidth();
-        slider.style.transform = `translateX(-${offset}px)`;
-        slider.style.transition = "transform 0.4s ease";
+      function getSlideWidth() {
+        const slides = getSlides();
+        if (!slides.length) return 0;
+        const style = window.getComputedStyle(slider);
+        const gap = parseFloat(style.gap) || 24;
+        return slides[0].offsetWidth + gap;
+      }
 
-        // Update dots
-        if (dotsWrap) {
-          const dots = dotsWrap.querySelectorAll(".slider-dot");
-          const activeDot = Math.floor(currentIndex / slidesVisible);
-          dots.forEach((d, i) => d.classList.toggle("active", i === activeDot));
+      function buildDots() {
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = "";
+        const total = getSlides().length;
+        const visible = getSlidesVisible();
+        const numDots = Math.ceil(total / visible);
+        for (let i = 0; i < numDots; i++) {
+          const dot = document.createElement("button");
+          dot.classList.add("slider-dot");
+          if (i === 0) dot.classList.add("active");
+          dot.addEventListener("click", () => goToSlide(i * visible));
+          dotsWrap.appendChild(dot);
         }
       }
 
-      prevBtn.addEventListener("click", function () {
-        goToSlide(currentIndex - getSlidesVisible());
-      });
+      function updateDots() {
+        if (!dotsWrap) return;
+        const visible = getSlidesVisible();
+        const activeDot = Math.floor(currentIndex / visible);
+        dotsWrap.querySelectorAll(".slider-dot").forEach((d, i) => {
+          d.classList.toggle("active", i === activeDot);
+        });
+      }
 
-      nextBtn.addEventListener("click", function () {
-        goToSlide(currentIndex + getSlidesVisible());
-      });
+      function goToSlide(index) {
+        const slides = getSlides();
+        const visible = getSlidesVisible();
+        const max = Math.max(0, slides.length - visible);
+        currentIndex = Math.min(Math.max(index, 0), max);
+        const offset = currentIndex * getSlideWidth();
+        slider.style.transform = `translateX(-${offset}px)`;
+        slider.style.transition = "transform 0.4s ease";
+        updateDots();
+      }
 
-      // Keyboard nav
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowLeft") goToSlide(currentIndex - 1);
-        if (e.key === "ArrowRight") goToSlide(currentIndex + 1);
-      });
+      prevBtn.addEventListener("click", () =>
+        goToSlide(currentIndex - getSlidesVisible()),
+      );
+      nextBtn.addEventListener("click", () =>
+        goToSlide(currentIndex + getSlidesVisible()),
+      );
 
-      // Touch/swipe support
+      // Touch swipe
       let touchStartX = 0;
-      slider.addEventListener("touchstart", function (e) {
-        touchStartX = e.touches[0].clientX;
-      });
-      slider.addEventListener("touchend", function (e) {
+      slider.addEventListener(
+        "touchstart",
+        (e) => (touchStartX = e.touches[0].clientX),
+      );
+      slider.addEventListener("touchend", (e) => {
         const diff = touchStartX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 50) {
           if (diff > 0) goToSlide(currentIndex + getSlidesVisible());
@@ -122,9 +122,7 @@
         }
       });
 
-      // Recalc on resize
-      window.addEventListener("resize", function () {
-        slidesVisible = getSlidesVisible();
+      window.addEventListener("resize", () => {
         buildDots();
         goToSlide(0);
       });

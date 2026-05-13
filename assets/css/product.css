@@ -380,12 +380,14 @@ img { display: block; max-width: 100%; }
     background: #f5f5f5;
     border-radius: 18px;
     overflow: hidden;
+    height:500px;
 }
 
 .product-main-image img {
     width: 100%;
     display: block;
     object-fit: cover;
+    height:100%;
 }
 
 .product-gallery-thumbs {
@@ -394,7 +396,7 @@ img { display: block; max-width: 100%; }
 }
 
 .gallery-thumb {
-    width: 80px;
+    width: 133px;
     height: 80px;
     border-radius: 10px;
     overflow: hidden;
@@ -436,15 +438,28 @@ img { display: block; max-width: 100%; }
     line-height:36px;
 }
 
+.single-product-custom .product-price .woocommerce-Price-amount {
+    font-size: 30px;
+    font-weight: 400;
+    color: #2d5d3f;
+    line-height: 36px;
+}
+
 .product-price sub {
-    font-size: 14px;
-    color: #666;
+        font-size: 18px;
+    color: #6B8E7C;
     font-weight: 400;
 }
 
 .product-description {
-    color: #555;
-    line-height: 1.8;
+ font-family: Inter, sans-serif;
+font-weight: 400;
+font-style: Regular;
+font-size: 18px;
+line-height: 27px;
+letter-spacing: 0px;
+color:#6B8E7C;
+
 }
 
 .product-cart-wrap form.cart {
@@ -511,17 +526,76 @@ img { display: block; max-width: 100%; }
 }
 
 .product-info-section h2 {
-    color: #2d5d3f;
-    font-size: 30px;
-    margin: 0;
+    font-family: Inter;
+font-weight: 500;
+font-style: Medium;
+font-size: 30px;
+line-height: 36px;
+letter-spacing: 0px;
+color: #2D5F3F
 }
 
 .section-content-box {
-    background: #f6f3ea;
+   background: linear-gradient(135deg, #E8F5E9 0%, #EAF6EB 10%, #EDF7ED 20%, #EFF8F0 30%, #F1F9F2 40%, #F3FAF4 50%, #F6FBF6 60%, #F8FCF8 70%, #FAFDFB 80%, #FDFEFD 90%, #FFFFFF 100%);
     border-radius: 18px;
     padding: 30px;
-    line-height: 1.8;
-    color: #555;
+    color: #6B8E7C;
+    font-family: Inter;
+font-weight: 400;
+font-style: Regular;
+font-size: 18px;
+line-height: 29.25px;
+letter-spacing: 0px;
+
+}
+.section-content-box.health-benefits {
+    background: #F8F5ED;
+}
+
+.section-content-box.health-benefits.card__features {
+    list-style: none;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* UL */
+.health-benefits ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* LI */
+.health-benefits ul li {
+    position: relative;
+    padding-left: 28px;
+    font-size: 18px;
+    font-weight:400;
+    line-height: 28px;
+  
+}
+
+.health-benefits ul li::before {
+
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    /* border: 1.5px solid #3f7b57; */
+    color: #3f7b57;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(http://gale-livelihood.local/wp-content/uploads/2026/05/tick-icon.png);
+    background-size: 20px  20px;
 }
 
 .nutrition-table-wrap {
@@ -593,43 +667,5 @@ img { display: block; max-width: 100%; }
 .btn-primary {
     background: #e7efe9;
     color: #2d5d3f;
-}
-
-@media (max-width: 991px) {
-
-    .product-hero {
-        grid-template-columns: 1fr;
-    }
-
-    .product-feature-cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .nutrition-table-wrap {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 767px) {
-
-    .product-title {
-        font-size: 32px;
-    }
-
-    .product-feature-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .nutrition-table-wrap {
-        grid-template-columns: 1fr;
-    }
-
-    .single-product-cta {
-        padding: 40px 20px;
-    }
-
-    .single-product-cta h2 {
-        font-size: 28px;
-    }
 }
 
