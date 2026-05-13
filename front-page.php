@@ -132,15 +132,19 @@ get_header();
     <p class="section-sub">Naturally sourced, traditionally processed, and ethically produced</p>
 
     <div class="products-slider-wrap">
-      <button class="slider-arrow prev" id="sliderPrev">&#8249;</button>
+
+      <button class="slider-arrow prev" id="sliderPrev">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/arrow-left.png" alt="prev">
+      </button>
 
       <div class="products-slider" id="productsSlider">
         <?php
         $args = array(
           'post_type'      => 'product',
-          'posts_per_page' => 6,
+          'posts_per_page' => 10,
           'orderby'        => 'date',
           'order'          => 'DESC',
+          'post_status'    => 'publish',
         );
         $products = new WP_Query($args);
 
@@ -148,23 +152,27 @@ get_header();
           while ($products->have_posts()) : $products->the_post();
             global $product;
             $product = wc_get_product(get_the_ID());
-            $features = get_field('product_features');
         ?>
             <div class="product-slide">
+
+              <!-- Product Image -->
               <div class="product-img-wrap">
                 <?php if (has_post_thumbnail()) : ?>
                   <a href="<?php the_permalink(); ?>">
-                    <?php the_post_thumbnail('medium', ['class' => 'product-thumb']); ?>
+                    <?php the_post_thumbnail('medium_large', ['class' => 'product-thumb']); ?>
                   </a>
                 <?php else : ?>
                   <div class="product-img-placeholder"></div>
                 <?php endif; ?>
               </div>
+
+              <!-- Product Info -->
               <div class="product-info">
                 <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                <p class="product-short-desc"><?php echo wp_trim_words(get_the_excerpt(), 12); ?></p>
+                <p class="product-short-desc"><?php echo wp_trim_words(get_the_excerpt(), 10); ?></p>
 
-                <?php if ($features && have_rows('product_features')) : ?>
+                <!-- ACF Features -->
+                <?php if (have_rows('product_features')) : ?>
                   <ul class="product-features-list">
                     <?php while (have_rows('product_features')) : the_row(); ?>
                       <li><?php echo esc_html(get_sub_field('feature_text')); ?></li>
@@ -172,26 +180,33 @@ get_header();
                   </ul>
                 <?php endif; ?>
 
+                <!-- Price + Button -->
                 <div class="product-bottom">
                   <div class="product-price">
                     <?php echo $product->get_price_html(); ?>
                   </div>
-                  <a href="<?php echo esc_url($product->add_to_cart_url()); ?>" class="btn-buynow">Buy Now</a>
+                  <a href="<?php echo esc_url($product->add_to_cart_url()); ?>"
+                    class="btn-buynow">Buy Now</a>
                 </div>
               </div>
+
             </div>
           <?php
           endwhile;
           wp_reset_postdata();
         else : ?>
-          <p class="no-products">No products found. <a href="<?php echo admin_url('post-new.php?post_type=product'); ?>">Add products</a></p>
+          <p>No products found.</p>
         <?php endif; ?>
       </div>
 
-      <button class="slider-arrow next" id="sliderNext">&#8250;</button>
+      <button class="slider-arrow next" id="sliderNext">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/arrow-right.png" alt="next">
+      </button>
+
     </div>
 
     <div class="slider-dots" id="sliderDots"></div>
+  </div>
   </div>
 </section>
 
@@ -378,31 +393,41 @@ get_header();
         <p>Supporting tribal communities through sustainable livelihoods and skill development in Palghar, Maharashtra.</p>
 
         <div class="contact-detail">
-          <span class="contact-detail-icon">📍</span>
+          <div class="contact-detail-icon-wrap">
+            <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/location_icon.png" alt="Address" width="24" height="24">
+          </div>
           <div>
             <strong>Address</strong>
             <p>Gale Village, Palghar (Wada)<br>Maharashtra, India</p>
           </div>
         </div>
+
         <div class="contact-detail">
-          <span class="contact-detail-icon">📞</span>
+          <div class="contact-detail-icon-wrap">
+            <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/Vector.png" alt="Phone" width="24" height="24">
+          </div>
           <div>
             <strong>Phone</strong>
             <p>+91 98765 43210</p>
           </div>
         </div>
+
         <div class="contact-detail">
-          <span class="contact-detail-icon">✉️</span>
+          <div class="contact-detail-icon-wrap">
+            <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/location_icon.png" alt="Email" width="24" height="24">
+          </div>
           <div>
             <strong>Email</strong>
             <p>info@galelivelihood.org</p>
           </div>
         </div>
 
+
         <div class="contact-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120726.21974703483!2d73.03195472477269!3d18.98910064755441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7e83e1f23f23d%3A0xe3a106c431e3fd0a!2sPanvel%2C%20Navi%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1778473040571!5m2!1sen!2sin"
-            width="100%" height="295" style="border:0; border-radius:12px;"
+            src="https://maps.google.com/maps?q=Panvel,Navi+Mumbai,Maharashtra&output=embed&z=14"
+            width="100%" height="295"
+            style="border:0; border-radius:12px;"
             allowfullscreen="" loading="lazy">
           </iframe>
         </div>
