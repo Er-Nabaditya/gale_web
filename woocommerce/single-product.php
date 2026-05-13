@@ -21,11 +21,11 @@ do_action( 'woocommerce_before_main_content' );
 
         <?php while ( have_posts() ) : ?>
 
-            <?php the_post(); ?>
-
-            <?php global $product; ?>
-
             <?php
+            the_post();
+
+            global $product;
+
             $post_id = $product->get_id();
 
             $title       = $product->get_name();
@@ -38,6 +38,18 @@ do_action( 'woocommerce_before_main_content' );
             $nutritional_value = get_field( 'nutritional_value', $post_id );
 
             $attachment_ids = $product->get_gallery_image_ids();
+
+            /*
+            |--------------------------------------------------------------------------
+            | CUSTOM PRODUCT FEATURES
+            |--------------------------------------------------------------------------
+            */
+
+            $product_features = get_post_meta(
+                $post_id,
+                '_product_features',
+                true
+            );
             ?>
 
             <div id="product-<?php the_ID(); ?>" <?php wc_product_class( 'single-product-custom', $product ); ?>>
@@ -51,13 +63,13 @@ do_action( 'woocommerce_before_main_content' );
 
                 </div>
 
-                <!-- Product Hero Section -->
+                <!-- Product Hero -->
                 <section class="product-hero">
 
-                    <!-- LEFT SIDE -->
+                    <!-- LEFT -->
                     <div class="product-gallery-wrap">
 
-                        <!-- Main Product Image -->
+                        <!-- Main Image -->
                         <div class="product-main-image">
 
                             <?php
@@ -69,12 +81,12 @@ do_action( 'woocommerce_before_main_content' );
 
                         </div>
 
-                        <!-- Product Thumbnails -->
+                        <!-- Gallery -->
                         <?php if ( ! empty( $attachment_ids ) ) : ?>
 
                             <div class="product-gallery-thumbs">
 
-                                <!-- Featured Image -->
+                                <!-- Featured -->
                                 <div class="gallery-thumb active">
 
                                     <?php
@@ -108,10 +120,10 @@ do_action( 'woocommerce_before_main_content' );
 
                     </div>
 
-                    <!-- RIGHT SIDE -->
+                    <!-- RIGHT -->
                     <div class="product-summary-wrap">
 
-                        <!-- Product Title -->
+                        <!-- Title -->
                         <h1 class="product-title">
 
                             <?php echo esc_html( $title ); ?>
@@ -142,14 +154,14 @@ do_action( 'woocommerce_before_main_content' );
 
                         </div>
 
-                        <!-- Product Description -->
+                        <!-- Description -->
                         <div class="product-description">
 
                             <?php echo wp_kses_post( $description ); ?>
 
                         </div>
 
-                        <!-- Quantity + Add To Cart -->
+                        <!-- Add To Cart -->
                         <div class="product-cart-wrap">
 
                             <?php woocommerce_template_single_add_to_cart(); ?>
@@ -160,69 +172,63 @@ do_action( 'woocommerce_before_main_content' );
 
                 </section>
 
-<?php
 
-$product_features = get_post_meta(
-    $post_id,
-    '_product_features',
-    true
-);
-?>
+                <!-- Product Features -->
+                <?php if ( ! empty( $product_features ) ) : ?>
 
-<?php if ( ! empty( $product_features ) ) : ?>
+                    <section class="product-feature-cards">
 
-    <section class="product-feature-cards">
+                        <?php foreach ( $product_features as $feature ) : ?>
 
-        <?php foreach ( $product_features as $feature ) : ?>
+                            <div class="feature-card">
 
-            <div class="feature-card">
+                                <!-- Icon -->
+                                <?php if ( ! empty( $feature['icon'] ) ) : ?>
 
-                <!-- ICON -->
-                <?php if ( ! empty( $feature['icon'] ) ) : ?>
+                                    <div class="feature-icon">
 
-                    <div class="feature-icon">
+                                        <img
+                                            src="<?php echo esc_url( $feature['icon'] ); ?>"
+                                            alt="<?php echo esc_attr( $feature['title'] ); ?>"
+                                        >
 
-                        <img
-                            src="<?php echo esc_url( $feature['icon'] ); ?>"
-                            alt="<?php echo esc_attr( $feature['title'] ); ?>"
-                        >
+                                    </div>
 
-                    </div>
+                                <?php endif; ?>
+
+                                <!-- Title -->
+                                <?php if ( ! empty( $feature['title'] ) ) : ?>
+
+                                    <h4>
+
+                                        <?php echo esc_html( $feature['title'] ); ?>
+
+                                    </h4>
+
+                                <?php endif; ?>
+
+                                <!-- Content -->
+                                <?php if ( ! empty( $feature['content'] ) ) : ?>
+
+                                    <p>
+
+                                        <?php echo esc_html( $feature['content'] ); ?>
+
+                                    </p>
+
+                                <?php endif; ?>
+
+                            </div>
+
+                        <?php endforeach; ?>
+
+                    </section>
 
                 <?php endif; ?>
 
-                <!-- TITLE -->
-                <?php if ( ! empty( $feature['title'] ) ) : ?>
 
-                    <h4>
-
-                        <?php echo esc_html( $feature['title'] ); ?>
-
-                    </h4>
-
-                <?php endif; ?>
-
-                <!-- CONTENT -->
-                <?php if ( ! empty( $feature['content'] ) ) : ?>
-
-                    <p>
-
-                        <?php echo esc_html( $feature['content'] ); ?>
-
-                    </p>
-
-                <?php endif; ?>
-
-            </div>
-
-        <?php endforeach; ?>
-
-    </section>
-
-<?php endif; ?>
-
-                <!-- Cultivation Section -->
-             <?php   if ( $cultivation ) : ?>
+                <!-- Cultivation -->
+                <?php if ( $cultivation ) : ?>
 
                     <section class="product-info-section cultivation-section">
 
@@ -239,6 +245,7 @@ $product_features = get_post_meta(
                     </section>
 
                 <?php endif; ?>
+
 
                 <!-- Health Benefits -->
                 <?php if ( $health_benefits ) : ?>
@@ -259,8 +266,9 @@ $product_features = get_post_meta(
 
                 <?php endif; ?>
 
+
                 <!-- Nutritional Value -->
-                <?php if ( $nutritional_value ) : ?>
+                <?php if ( ! empty( $nutritional_value ) ) : ?>
 
                     <section class="product-info-section nutrition-section">
 
@@ -270,19 +278,23 @@ $product_features = get_post_meta(
 
                         <div class="nutrition-table-wrap">
 
-                            <?php foreach ( $nutritional_value as $item ) : ?>
+                            <?php foreach ( $nutritional_value as $key => $value ) : ?>
 
-                                <div class="nutrition-box">
+                                <?php if ( ! empty( $value ) ) : ?>
 
-                                    <span>
-                                        <?php echo esc_html( $item['label'] ); ?>
-                                    </span>
+                                    <div class="nutrition-box">
 
-                                    <strong>
-                                        <?php echo esc_html( $item['value'] ); ?>
-                                    </strong>
+                                        <span>
+                                            <?php echo esc_html( ucwords( str_replace( '_', ' ', $key ) ) ); ?>
+                                        </span>
 
-                                </div>
+                                        <strong>
+                                            <?php echo esc_html( $value ); ?>
+                                        </strong>
+
+                                    </div>
+
+                                <?php endif; ?>
 
                             <?php endforeach; ?>
 
@@ -292,7 +304,8 @@ $product_features = get_post_meta(
 
                 <?php endif; ?>
 
-                <!-- CTA Section -->
+
+                <!-- CTA -->
                 <section class="single-product-cta">
 
                     <div class="cta-content">
@@ -348,4 +361,3 @@ do_action( 'woocommerce_sidebar' );
 
 get_footer( 'shop' );
 ?>
-
