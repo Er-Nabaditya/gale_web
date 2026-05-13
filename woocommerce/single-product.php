@@ -160,13 +160,76 @@ do_action( 'woocommerce_before_main_content' );
                             <?php echo wp_kses_post( $description ); ?>
 
                         </div>
-
+                      
+                            
                         <!-- Add To Cart -->
                         <div class="product-cart-wrap">
 
-                            <?php woocommerce_template_single_add_to_cart(); ?>
+                           <form
+    class="cart custom-cart"
+    action="<?php echo esc_url( $product->get_permalink() ); ?>"
+    method="post"
+    enctype="multipart/form-data"
+>
+
+    <!-- Quantity Label -->
+    <label class="qty-label">
+        Quantity
+    </label>
+
+    <!-- Quantity Box -->
+    <div class="custom-qty-wrap">
+
+        <!-- Minus -->
+        <button
+            type="button"
+            class="qty-btn qty-minus"
+        >
+            −
+        </button>
+
+        <!-- Quantity Input -->
+        <input
+            type="number"
+            id="quantity"
+            class="qty-input"
+            step="1"
+            min="1"
+            max=""
+            name="quantity"
+            value="1"
+            title="Qty"
+        >
+
+        <!-- Plus -->
+        <button
+            type="button"
+            class="qty-btn qty-plus"
+        >
+            +
+        </button>
+
+    </div>
+
+    <div class="product-sizes">
+                            <p>Available in 250g, 500g, and 1kg packs</p>
+                        </div>
+
+    <!-- Add To Cart -->
+    <button
+        type="submit"
+        name="add-to-cart"
+        value="<?php echo esc_attr( $product->get_id() ); ?>"
+        class="single_add_to_cart_button button alt custom-cart-btn"
+    >
+        Buy Now
+    </button>
+
+</form>
 
                         </div>
+
+                          
 
                     </div>
 
@@ -185,7 +248,7 @@ do_action( 'woocommerce_before_main_content' );
                                 <!-- Icon -->
                                 <?php if ( ! empty( $feature['icon'] ) ) : ?>
 
-                                    <div class="feature-icon">
+                                    <div class="feature-icon feature-icon-img">
 
                                         <img
                                             src="<?php echo esc_url( $feature['icon'] ); ?>"
@@ -268,41 +331,62 @@ do_action( 'woocommerce_before_main_content' );
 
 
                 <!-- Nutritional Value -->
-                <?php if ( ! empty( $nutritional_value ) ) : ?>
+            
+<section class="product-info-section nutrition-section">
 
-                    <section class="product-info-section nutrition-section">
+    <h2>
+        Nutritional Value
+    </h2>
 
-                        <h2>
-                            Nutritional Value
-                        </h2>
+    <div class="nutrition-table-wrap">
 
-                        <div class="nutrition-table-wrap">
+        <?php
+        $nutrition_fields = array(
 
-                            <?php foreach ( $nutritional_value as $key => $value ) : ?>
+            'energy'         => 'Energy',
+            'fat'            => 'Fat',
+            'total_sugar'    => 'Total Sugar',
+            'protein'        => 'Protein',
+            'carbohydrates'  => 'Carbohydrates',
+            'saturated_fat'  => 'Saturated Fat',
 
-                                <?php if ( ! empty( $value ) ) : ?>
+        );
 
-                                    <div class="nutrition-box">
+        foreach ( $nutrition_fields as $field_name => $label ) :
 
-                                        <span>
-                                            <?php echo esc_html( ucwords( str_replace( '_', ' ', $key ) ) ); ?>
-                                        </span>
+            $value = get_field(
+                $field_name,
+                $post_id
+            );
 
-                                        <strong>
-                                            <?php echo esc_html( $value ); ?>
-                                        </strong>
+            if ( ! empty( $value ) ) :
+        ?>
 
-                                    </div>
+            <div class="nutrition-box">
 
-                                <?php endif; ?>
+                <span>
 
-                            <?php endforeach; ?>
+                    <?php echo esc_html( $label ); ?>
 
-                        </div>
+                </span>
 
-                    </section>
+                <strong>
 
-                <?php endif; ?>
+                    <?php echo esc_html( $value ); ?>
+
+                </strong>
+
+            </div>
+
+        <?php
+            endif;
+
+        endforeach;
+        ?>
+
+    </div>
+
+</section>
 
 
                 <!-- CTA -->
@@ -315,8 +399,7 @@ do_action( 'woocommerce_before_main_content' );
                         </h2>
 
                         <p>
-                            Support sustainable livelihoods while choosing natural products.
-                            Every purchase makes a difference.
+                            Support sustainable livelihoods while choosing natural products. Every<br> purchase makes a difference.
                         </p>
 
                         <div class="cta-buttons">
@@ -357,7 +440,46 @@ do_action( 'woocommerce_after_main_content' );
  * Hook:
  * woocommerce_sidebar
  */
-do_action( 'woocommerce_sidebar' );
+do_action( 'woocommerce_sidebar' );?>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function(){
+
+    const minusBtn = document.querySelector('.qty-minus');
+    const plusBtn  = document.querySelector('.qty-plus');
+    const qtyInput = document.querySelector('.qty-input');
+
+    if( minusBtn ){
+
+        minusBtn.addEventListener('click', function(){
+
+            let current = parseInt(qtyInput.value);
+
+            if( current > 1 ){
+                qtyInput.value = current - 1;
+            }
+
+        });
+
+    }
+
+    if( plusBtn ){
+
+        plusBtn.addEventListener('click', function(){
+
+            let current = parseInt(qtyInput.value);
+
+            qtyInput.value = current + 1;
+
+        });
+
+    }
+
+});
+
+</script>
+<?php
 
 get_footer( 'shop' );
 ?>

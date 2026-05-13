@@ -1,7 +1,5 @@
 <?php
 
-defined('ABSPATH') || exit;
-// require '/wp-content/themes/understrap-child-1.2.0/inc/woocommerce_products.php';
 
 function understrap_remove_scripts()
 {
@@ -129,31 +127,16 @@ function custom_product_features_metabox() {
     );
 
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| ENQUEUE MEDIA UPLOADER
-|--------------------------------------------------------------------------
-*/
-
 add_action(
-    'admin_enqueue_scripts',
-    'custom_product_features_admin_scripts'
+    'post_edit_form_tag',
+    'custom_product_features_form_tag'
 );
 
-function custom_product_features_admin_scripts() {
+function custom_product_features_form_tag() {
 
-    wp_enqueue_media();
+    echo ' enctype="multipart/form-data"';
 
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| METABOX HTML
-|--------------------------------------------------------------------------
-*/
 
 function custom_product_features_callback( $post ) {
 
@@ -168,7 +151,10 @@ function custom_product_features_callback( $post ) {
         true
     );
 
-    if ( empty( $features ) || ! is_array( $features ) ) {
+    if (
+        empty( $features ) ||
+        ! is_array( $features )
+    ) {
         $features = array();
     }
 
@@ -197,6 +183,7 @@ function custom_product_features_callback( $post ) {
 
                 </p>
 
+
                 <!-- CONTENT -->
                 <p>
 
@@ -213,57 +200,36 @@ function custom_product_features_callback( $post ) {
 
                 </p>
 
-                <!-- IMAGE -->
+
+                <!-- OLD IMAGE -->
+                <input
+                    type="hidden"
+                    name="product_features[<?php echo $index; ?>][old_icon]"
+                    value="<?php echo esc_url( $feature['icon'] ?? '' ); ?>"
+                >
+
+
+                <!-- IMAGE UPLOAD -->
                 <p>
 
                     <label>
-                        Feature Icon
+                        Feature Image
                     </label>
 
-                </p>
-
-                <div class="feature-image-wrap">
-
                     <input
-                        type="hidden"
-                        name="product_features[<?php echo $index; ?>][icon]"
-                        value="<?php echo esc_attr( $feature['icon'] ?? '' ); ?>"
-                        class="feature-image-input"
+                        type="file"
+                        name="product_feature_icon_<?php echo $index; ?>"
+                        class="widefat"
                     >
-
-                    <div class="feature-image-preview">
-
-                        <?php if ( ! empty( $feature['icon'] ) ) : ?>
-
-                            <img
-                                src="<?php echo esc_url( $feature['icon'] ); ?>"
-                                style="max-width:80px;"
-                            >
-
-                        <?php endif; ?>
-
-                    </div>
-
-                    <button
-                        type="button"
-                        class="button upload-feature-image"
-                    >
-                        Upload Image
-                    </button>
-
-                </div>
-
-                <!-- REMOVE BUTTON -->
-                <p style="margin-top:15px;">
-
-                    <button
-                        type="button"
-                        class="button remove-feature"
-                    >
-                        Remove Feature
-                    </button>
 
                 </p>
+            
+                <button
+                    type="button"
+                    class="button remove-feature"
+                >
+                    Remove
+                </button>
 
                 <hr>
 
@@ -273,7 +239,6 @@ function custom_product_features_callback( $post ) {
 
     </div>
 
-    <!-- ADD BUTTON -->
     <button
         type="button"
         class="button button-primary"
@@ -288,13 +253,6 @@ function custom_product_features_callback( $post ) {
     jQuery(document).ready(function($){
 
         let index = <?php echo count( $features ); ?>;
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | ADD FEATURE
-        |--------------------------------------------------------------------------
-        */
 
         $('#add-feature').on('click', function(){
 
@@ -332,43 +290,32 @@ function custom_product_features_callback( $post ) {
 
                     </p>
 
+                    <input
+                        type="hidden"
+                        name="product_features[\${index}][old_icon]"
+                        value=""
+                    >
+
                     <p>
 
                         <label>
-                            Feature Icon
+                            Feature Image
                         </label>
 
-                    </p>
-
-                    <div class="feature-image-wrap">
-
                         <input
-                            type="hidden"
-                            name="product_features[\${index}][icon]"
-                            class="feature-image-input"
+                            type="file"
+                            name="product_feature_icon_\${index}"
+                            class="widefat"
                         >
-
-                        <div class="feature-image-preview"></div>
-
-                        <button
-                            type="button"
-                            class="button upload-feature-image"
-                        >
-                            Upload Image
-                        </button>
-
-                    </div>
-
-                    <p style="margin-top:15px;">
-
-                        <button
-                            type="button"
-                            class="button remove-feature"
-                        >
-                            Remove Feature
-                        </button>
 
                     </p>
+
+                    <button
+                        type="button"
+                        class="button remove-feature"
+                    >
+                        Remove
+                    </button>
 
                     <hr>
 
@@ -382,70 +329,14 @@ function custom_product_features_callback( $post ) {
 
         });
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | REMOVE FEATURE
-        |--------------------------------------------------------------------------
-        */
-
-        $(document).on('click', '.remove-feature', function(){
-
-            $(this).closest('.feature-item').remove();
-
-        });
-
-
-        /*
-        |--------------------------------------------------------------------------
-        | IMAGE UPLOAD
-        |--------------------------------------------------------------------------
-        */
-
         $(document).on(
             'click',
-            '.upload-feature-image',
-            function(e){
+            '.remove-feature',
+            function(){
 
-                e.preventDefault();
-
-                let button = $(this);
-
-                let uploader = wp.media({
-
-                    title: 'Select Feature Image',
-
-                    button: {
-                        text: 'Use Image'
-                    },
-
-                    multiple: false
-
-                });
-
-                uploader.on('select', function(){
-
-                    let attachment = uploader
-                        .state()
-                        .get('selection')
-                        .first()
-                        .toJSON();
-
-                    button
-                        .siblings('.feature-image-input')
-                        .val(attachment.url);
-
-                    button
-                        .siblings('.feature-image-preview')
-                        .html(
-                            '<img src="' +
-                            attachment.url +
-                            '" style="max-width:80px;">'
-                        );
-
-                });
-
-                uploader.open();
+                $(this)
+                    .closest('.feature-item')
+                    .remove();
 
             }
         );
@@ -457,17 +348,17 @@ function custom_product_features_callback( $post ) {
 
     <style>
 
-    .feature-item {
-        background: #f8f8f8;
-        border: 1px solid #ddd;
-        padding: 20px;
-        margin-bottom: 20px;
+    .feature-item{
+        background:#f8f8f8;
+        padding:20px;
+        margin-bottom:20px;
+        border:1px solid #ddd;
+        border-radius:8px;
     }
 
-    .feature-image-preview img {
-        display: block;
-        margin-bottom: 10px;
-        border-radius: 6px;
+    .feature-item input,
+    .feature-item textarea{
+        margin-top:8px;
     }
 
     </style>
@@ -475,25 +366,12 @@ function custom_product_features_callback( $post ) {
     <?php
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| SAVE DATA
-|--------------------------------------------------------------------------
-*/
-
 add_action(
     'save_post_product',
     'save_custom_product_features'
 );
 
 function save_custom_product_features( $post_id ) {
-
-    /*
-    |--------------------------------------------------------------------------
-    | SECURITY CHECK
-    |--------------------------------------------------------------------------
-    */
 
     if (
         ! isset( $_POST['custom_product_features_nonce'] )
@@ -518,19 +396,80 @@ function save_custom_product_features( $post_id ) {
     }
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | SAVE FEATURES
-    |--------------------------------------------------------------------------
-    */
-
     if ( isset( $_POST['product_features'] ) ) {
 
-        $sanitized_features = array();
+        $saved_features = array();
 
-        foreach ( $_POST['product_features'] as $feature ) {
+        foreach ( $_POST['product_features'] as $index => $feature ) {
 
-            $sanitized_features[] = array(
+            $image_url = '';
+
+            /*
+            |--------------------------------------------------------------------------
+            | FILE UPLOAD
+            |--------------------------------------------------------------------------
+            */
+
+            if (
+                isset(
+                    $_FILES[
+                        'product_feature_icon_' . $index
+                    ]
+                ) &&
+                ! empty(
+                    $_FILES[
+                        'product_feature_icon_' . $index
+                    ]['name']
+                )
+            ) {
+
+                require_once ABSPATH .
+                    'wp-admin/includes/file.php';
+
+                $uploadedfile =
+                    $_FILES[
+                        'product_feature_icon_' . $index
+                    ];
+
+                $upload_overrides = array(
+                    'test_form' => false,
+                );
+
+                $movefile = wp_handle_upload(
+                    $uploadedfile,
+                    $upload_overrides
+                );
+
+                if (
+                    $movefile &&
+                    ! isset( $movefile['error'] )
+                ) {
+
+                    $image_url = $movefile['url'];
+
+                }
+
+            } else {
+
+                /*
+                |--------------------------------------------------------------------------
+                | KEEP OLD IMAGE
+                |--------------------------------------------------------------------------
+                */
+
+                $image_url =
+                    $feature['old_icon'] ?? '';
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | SAVE FEATURE
+            |--------------------------------------------------------------------------
+            */
+
+            $saved_features[] = array(
 
                 'title' => sanitize_text_field(
                     $feature['title']
@@ -541,24 +480,18 @@ function save_custom_product_features( $post_id ) {
                 ),
 
                 'icon' => esc_url_raw(
-                    $feature['icon']
+                    $image_url
                 ),
 
             );
 
         }
 
+
         update_post_meta(
             $post_id,
             '_product_features',
-            $sanitized_features
-        );
-
-    } else {
-
-        delete_post_meta(
-            $post_id,
-            '_product_features'
+            $saved_features
         );
 
     }
