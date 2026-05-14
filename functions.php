@@ -14,88 +14,20 @@ function gale_enqueue_styles()
 {
     $ver = wp_get_theme()->get('Version');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	wp_enqueue_style(
 		'understrap-parent',
 		get_template_directory_uri() . '/css/child-theme.min.css',
 		array(),
 		$ver
 	);
-	wp_enqueue_style(
-		'gale-style',
-		get_stylesheet_directory_uri() . '/style.css',
-		array('understrap-parent'),
-		$ver
-	);
-	wp_enqueue_style(
-		'gale-header-css',
-		get_stylesheet_directory_uri() . '/css/header.css',
-		array('gale-style'),
-		'1.0.0'
-	);
-	wp_enqueue_style(
-		'gale-home-css',
-		get_stylesheet_directory_uri() . '/css/home.css',
-		array('gale-style'),
-		'1.0.0'
-	);
-	wp_enqueue_style(
-		'gale-product-css',
-		get_stylesheet_directory_uri() . '/css/product.css',
-		array('gale-style'),
-		'1.0.0'
-	);
-    
-	wp_enqueue_style(
-		'gale-footer-css',
-		get_stylesheet_directory_uri() . '/css/footer.css',
-		array('gale-style'),
-		'1.0.0'
-	);
-=======
-=======
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
-    wp_enqueue_style(
-        'understrap-parent',
-        get_template_directory_uri() . '/css/child-theme.min.css',
-        array(),
-        $ver
-    );
+
     wp_enqueue_style(
         'gale-style',
         get_stylesheet_directory_uri() . '/style.css',
         array('understrap-parent'),
         $ver
     );
-    wp_enqueue_style(
-        'gale-header-css',
-        get_stylesheet_directory_uri() . '/assets/css/header.css',
-        array('gale-style'),
-        '1.0.0'
-    );
-    wp_enqueue_style(
-        'gale-home-css',
-        get_stylesheet_directory_uri() . '/assets/css/home.css',
-        array('gale-style'),
-        '1.0.0'
-    );
-    wp_enqueue_style(
-        'gale-product-css',
-        get_stylesheet_directory_uri() . '/assets/css/product.css',
-        array('gale-style'),
-        '1.0.0'
-    );
-    wp_enqueue_style(
-        'gale-footer-css',
-        get_stylesheet_directory_uri() . '/assets/css/footer.css',
-        array('gale-style'),
-        '1.0.0'
-    );
-<<<<<<< HEAD
->>>>>>> 727437bc187b492baa854f69694d67bea70bb491
-=======
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
+    
 
     wp_enqueue_style(
         'gale-google-fonts',
@@ -104,14 +36,6 @@ function gale_enqueue_styles()
         null
     );
 
-    wp_enqueue_script('jquery');
-    wp_enqueue_script(
-        'gale-js',
-        get_stylesheet_directory_uri() . '/assets/js/gale-custom.js',
-        array('jquery'),
-        '1.0.0',
-        true
-    );
 }
 add_action('wp_enqueue_scripts', 'gale_enqueue_styles');
 
@@ -147,48 +71,19 @@ add_action('after_setup_theme', 'add_child_theme_textdomain');
 
 add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 ); // removes "added to cart" notices
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count',       20 ); // removes "Showing all 4 results"
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   30 ); // removes "Default sorting" dropdown
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 remove_action( 'woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10 );
-=======
 remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10); // removes "added to cart" notices
 remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count',       20); // removes "Showing all 4 results"
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   30); // removes "Default sorting" dropdown
 remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
-
-function custom_cart_styles() {
-
-    if ( is_cart() ) {
-
-        wp_enqueue_style(
-            'custom-cart',
-            get_template_directory_uri() . '/assets/css/cart.css',
-            array(),
-            '1.0'
-        );
-
-    }
-
-}
-
-add_action(
-    'wp_enqueue_scripts',
-    'custom_cart_styles'
-);
-
-add_action(
-    'add_meta_boxes',
-    'custom_product_features_metabox'
-);
+add_filter( 'wc_add_to_cart_message_html', '__return_empty_string' );
 
 function custom_product_features_metabox()
 {
@@ -550,14 +445,30 @@ function save_custom_product_features($post_id)
         );
     }
 }
-<<<<<<< HEAD
-=======
 remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10); // removes "added to cart" notices
 remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count',       20); // removes "Showing all 4 results"
 remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   30); // removes "Default sorting" dropdown
 remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
->>>>>>> 727437bc187b492baa854f69694d67bea70bb491
-=======
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
+add_filter( 'woocommerce_cart_item_removed_notice_type', '__return_empty_string' );
+remove_action( 'woocommerce_after_cart_item_name', 'woocommerce_show_cart_item_data' );
+add_filter( 'woocommerce_cart_item_name', function( $name, $cart_item, $cart_item_key ) {
+    return strip_tags( $name );
+}, 10, 3 );
+
+add_filter( 'woocommerce_cart_tax_totals', function( $tax_totals ) {
+    foreach ( $tax_totals as $code => $tax ) {
+        $rate = WC_Tax::_get_tax_rate( $tax->tax_rate_id ?? 0 );
+        $tax->label = 'Tax (' . ( $rate['tax_rate'] ?? '18' ) . '% ' . ( $rate['tax_rate_name'] ?? 'GST' ) . ')';
+    }
+    return $tax_totals;
+});
+
+
+add_filter( 'woocommerce_form_field_args', function( $args, $key, $value ) {
+    $args['class']         = [ 'form-group' ];
+    $args['label_class']   = [ '' ];
+    $args['input_class']   = [ '' ];
+    return $args;
+}, 10, 3 );

@@ -281,7 +281,7 @@ img {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background-image: url("http://gale-livelihood.local/wp-content/uploads/2026/05/Tick.png");
+  background-image: url("http://gale-livelihood.local/wp-content/uploads/2026/05/tick-icon.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 10px 10px;
@@ -392,13 +392,7 @@ img {
   background: var(--clr-green-tint);
   color: var(--clr-green-dark);
   transform: translateY(-2px);
-<<<<<<< HEAD
-<<<<<<< HEAD
 }
-
-=======
-}
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
 
 /* ══════════════════════════════════════════════
    SINGLE PRODUCT — single-product.php
@@ -596,7 +590,7 @@ img {
 }
 
 .section-content-box {
-<<<<<<< HEAD
+
   background: linear-gradient(
     135deg,
     #e8f5e9 0%,
@@ -620,7 +614,6 @@ img {
   font-size: 18px;
   line-height: 29.25px;
   letter-spacing: 0px;
-=======
    background: linear-gradient(135deg, #E8F5E9 0%, #EAF6EB 10%, #EDF7ED 20%, #EFF8F0 30%, #F1F9F2 40%, #F3FAF4 50%, #F6FBF6 60%, #F8FCF8 70%, #FAFDFB 80%, #FDFEFD 90%, #FFFFFF 100%);
     border-radius: 18px;
     padding: 30px;
@@ -631,8 +624,6 @@ font-style: Regular;
 font-size: 17px;
 line-height: 29.25px;
 letter-spacing: 0px;
-
->>>>>>> origin/sheetal-dev
 }
 .section-content-box.health-benefits {
   background: #f8f5ed;
@@ -890,7 +881,7 @@ button.btn.btn-outline-primary {
 }
 
 .qty-input[type="number"] {
-  -moz-appearance: textfield;
+      background: transparent;
 }
 
 /* ====================================
@@ -912,9 +903,3 @@ button.btn.btn-outline-primary {
 .custom-cart-btn:hover {
   background: #3d6545 !important;
 }
-<<<<<<< HEAD
-=======
-}
->>>>>>> 727437bc187b492baa854f69694d67bea70bb491
-=======
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0

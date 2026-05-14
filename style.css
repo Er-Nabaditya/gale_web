@@ -20,6 +20,7 @@ Text Domain: gale-livelihood-child
 @import url("assets/css/product.css");
 @import url("assets/css/footer.css");
 @import url("assets/css/cart.css");
+@import url("assets/css/checkout.css");
 
 /* ══ CSS VARIABLES ══════════════════════════ */
 :root {
@@ -89,7 +90,7 @@ img {
 }
 
 .container {
-  max-width: 1216px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -152,12 +153,12 @@ p.demo_store {
   color: #ffffff !important;
 }
 
-.woocommerce .woocommerce-Price-amount,
+/* .woocommerce .woocommerce-Price-amount,
 .woocommerce span.price,
 .woocommerce .price {
-  color: var(--text-dark) !important;
+  color: var(--text-dark);
   font-weight: 700;
-}
+} */
 
 /* ══ UTILITY CLASSES ════════════════════════ */
 .text-green {

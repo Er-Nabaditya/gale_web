@@ -1,37 +1,39 @@
-<form
-    class="woocommerce-cart-form custom-cart-form"
-    action="<?php echo esc_url( wc_get_cart_url() ); ?>"
-    method="post"
->
+<?php
+/**
+ * Custom Cart Template
+ * File: your-theme/woocommerce/cart/cart.php
+ */
 
-    <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
+defined( 'ABSPATH' ) || exit;
 
-    <div class="custom-cart-page">
+do_action( 'woocommerce_before_cart' );
+?>
 
-        <div class="container">
+<div class="cart-page">
 
-            <!-- TOP -->
-            <div class="cart-page-top">
+    <div class="container">
 
-                <a
-                    href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>"
-                    class="continue-shopping"
-                >
-                    ← Continue Shopping
-                </a>
+        <!-- TOP -->
+        <div class="cart-page-top">
 
-                <h1 class="cart-page-title">
-                    Shopping Cart
-                </h1>
+            <a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>" class="continue-shopping">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                Continue Shopping
+            </a>
 
-                <p class="cart-count">
-                    <?php echo WC()->cart->get_cart_contents_count(); ?>
-                    items in your cart
-                </p>
+            <h1 class="cart-page-title">Shopping Cart</h1>
 
-            </div>
+            <p class="cart-count">
+                <?php echo WC()->cart->get_cart_contents_count(); ?> items in your cart
+            </p>
 
-            <!-- LAYOUT -->
+        </div>
+
+        <!-- FORM -->
+        <form class="woocommerce-cart-form" action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
+
             <div class="cart-layout">
 
                 <!-- LEFT -->
@@ -40,279 +42,224 @@
                     <?php foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) : ?>
 
                         <?php
-                        $_product = apply_filters(
-                            'woocommerce_cart_item_product',
-                            $cart_item['data'],
-                            $cart_item,
-                            $cart_item_key
-                        );
+                        $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 
-                        $product_id = apply_filters(
-                            'woocommerce_cart_item_product_id',
-                            $cart_item['product_id'],
-                            $cart_item,
-                            $cart_item_key
-                        );
+                        if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 ) :
 
-                        if (
-                            $_product &&
-                            $_product->exists() &&
-                            $cart_item['quantity'] > 0 &&
-                            apply_filters(
-                                'woocommerce_cart_item_visible',
-                                true,
-                                $cart_item,
-                                $cart_item_key
-                            )
-                        ) :
-
-                            $product_permalink = apply_filters(
-                                'woocommerce_cart_item_permalink',
-                                $_product->is_visible()
-                                    ? $_product->get_permalink( $cart_item )
-                                    : '',
-                                $cart_item,
-                                $cart_item_key
-                            );
-
-                            $thumbnail = apply_filters(
-                                'woocommerce_cart_item_thumbnail',
-                                $_product->get_image(),
-                                $cart_item,
-                                $cart_item_key
-                            );
-
-                            $name = apply_filters(
-                                'woocommerce_cart_item_name',
-                                $_product->get_name(),
-                                $cart_item,
-                                $cart_item_key
-                            );
-
-                            $price = WC()->cart->get_product_price( $_product );
-
-                            $subtotal = WC()->cart->get_product_subtotal(
-                                $_product,
-                                $cart_item['quantity']
-                            );
+                            $product_permalink = $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '';
+                            $thumbnail         = $_product->get_image();
+                            $product_name      = $_product->get_name();
+                            $price             = WC()->cart->get_product_price( $_product );
+                            $subtotal          = WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] );
                         ?>
 
-                            <!-- CART CARD -->
+                            <!-- CARD -->
                             <div class="cart-card">
 
                                 <!-- IMAGE -->
                                 <div class="cart-card-image">
-
-                                    <?php if ( $product_permalink ) : ?>
-
-                                        <a href="<?php echo esc_url( $product_permalink ); ?>">
-
-                                            <?php echo $thumbnail; ?>
-
-                                        </a>
-
-                                    <?php else : ?>
-
+                                    <a href="<?php echo esc_url( $product_permalink ); ?>">
                                         <?php echo $thumbnail; ?>
-
-                                    <?php endif; ?>
-
+                                    </a>
                                 </div>
 
                                 <!-- CONTENT -->
                                 <div class="cart-card-content">
 
                                     <h3 class="cart-product-title">
-
                                         <a href="<?php echo esc_url( $product_permalink ); ?>">
-
-                                            <?php echo esc_html( $name ); ?>
-
+                                            <?php echo esc_html( $product_name ); ?>
                                         </a>
-
                                     </h3>
 
                                     <!-- PRICE -->
                                     <div class="cart-price">
-
                                         <?php echo $price; ?>
-
-                                        <sub>/ 500g</sub>
-
                                     </div>
 
-                                    <!-- QUANTITY -->
-                                    <div class="cart-qty-wrap">
+                                    <!-- QUANTITY + REMOVE (side by side) -->
+                                    <div class="cart-qty-remove-row">
 
-                                        <?php
-                                        echo woocommerce_quantity_input(
-                                            array(
-                                                'input_name'   => "cart[{$cart_item_key}][qty]",
-                                                'input_value'  => $cart_item['quantity'],
-                                                'max_value'    => $_product->get_max_purchase_quantity(),
-                                                'min_value'    => 0,
-                                                'product_name' => $name,
-                                            ),
-                                            $_product,
-                                            false
-                                        );
-                                        ?>
+                                        <!-- QUANTITY -->
+                                        <div class="custom-qty-wrap-cart">
 
-                                    </div>
+                                            <button type="button" class="qty-btn-cart qty-minus">−</button>
 
-                                    <!-- REMOVE -->
-                                    <div class="cart-remove">
+                                            <input
+                                                type="hidden"
+                                                class="qty-input"
+                                                name="cart[<?php echo $cart_item_key; ?>][qty]"
+                                                value="<?php echo esc_attr( $cart_item['quantity'] ); ?>"
+                                                min="1"
+                                            >
 
-                                        <?php
-                                        echo apply_filters(
-                                            'woocommerce_cart_item_remove_link',
-                                            sprintf(
-                                                '<a href="%s" class="remove-product">Remove</a>',
-                                                esc_url(
-                                                    wc_get_cart_remove_url(
-                                                        $cart_item_key
-                                                    )
-                                                )
-                                            ),
-                                            $cart_item_key
-                                        );
-                                        ?>
+                                            <span class="qty-number"><?php echo esc_html( $cart_item['quantity'] ); ?></span>
 
-                                    </div>
+                                            <button type="button" class="qty-btn-cart qty-plus">+</button>
 
-                                </div>
+                                        </div>
+
+                                        <!-- REMOVE -->
+                                        <div class="cart-remove">
+                                            <a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="remove-product">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path d="M19 6l-1 14H6L5 6"></path>
+                                                    <path d="M10 11v6"></path>
+                                                    <path d="M14 11v6"></path>
+                                                    <path d="M9 6V4h6v2"></path>
+                                                </svg>
+                                                Remove
+                                            </a>
+                                        </div>
+
+                                    </div><!-- /.cart-qty-remove-row -->
+
+                                </div><!-- /.cart-card-content -->
 
                                 <!-- SUBTOTAL -->
                                 <div class="cart-subtotal">
-
-                                    <span class="subtotal-label">
-                                        Subtotal
-                                    </span>
-
-                                    <div class="subtotal-price">
-
-                                        <?php echo $subtotal; ?>
-
-                                    </div>
-
+                                    <span class="subtotal-label">Subtotal</span>
+                                    <div class="subtotal-price"><?php echo $subtotal; ?></div>
                                 </div>
 
-                            </div>
+                            </div><!-- /.cart-card -->
 
                         <?php endif; ?>
 
                     <?php endforeach; ?>
 
-                    <!-- UPDATE CART -->
-                    <div class="cart-update-btn-wrap">
+                    <?php wp_nonce_field( 'woocommerce-cart', 'woocommerce-cart-nonce' ); ?>
 
-                        <button
-                            type="submit"
-                            class="update-cart-btn"
-                            name="update_cart"
-                            value="<?php esc_attr_e( 'Update cart', 'woocommerce' ); ?>"
-                        >
-                            Update Cart
-                        </button>
+                </div><!-- /.cart-left -->
+
+                <!-- RIGHT -->
+                <div class="cart-right">
+
+                    <div class="cart-summary">
+
+                        <h2 class="summary-title">Order Summary</h2>
+
+                        <div class="summary-box">
+
+                            <!-- SUBTOTAL -->
+                            <div class="summary-row">
+                                <span class="row-label">Subtotal</span>
+                                <span class="row-value"><?php wc_cart_totals_subtotal_html(); ?></span>
+                            </div>
+
+                            <!-- SHIPPING -->
+                            <div class="summary-row">
+                                <span class="row-label">Shipping</span>
+                                <span class="row-value <?php echo ( WC()->cart->get_shipping_total() == 0 ) ? 'free' : ''; ?>">
+                                    <?php
+                                    if ( WC()->cart->get_shipping_total() == 0 ) {
+                                        esc_html_e( 'Free', 'woocommerce' );
+                                    } else {
+                                        wc_cart_totals_shipping_html();
+                                    }
+                                    ?>
+                                </span>
+                            </div>
+
+                            <!-- TAX ROWS -->
+                            <?php
+                            if ( wc_tax_enabled() ) {
+                                $cart_taxes = WC()->cart->get_taxes();
+                                if ( ! empty( $cart_taxes ) ) {
+                                    $taxes_total = array_sum( $cart_taxes );
+                                    ?>
+                                    <div class="summary-row">
+                                        <span class="row-label">Tax (18% GST)</span>
+                                        <span class="row-value"><?php echo wc_price( $taxes_total ); ?></span>
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
+
+                            <!-- TOTAL -->
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <span class="total-amount"><?php wc_cart_totals_order_total_html(); ?></span>
+                            </div>
+
+                            <!-- CHECKOUT -->
+                            <a href="<?php echo esc_url( wc_get_checkout_url() ); ?>" class="checkout-btn">
+                                Proceed to Checkout
+                            </a>
+
+                            <!-- NOTE -->
+                            <div class="summary-note">
+                                Every purchase supports tribal communities in Palghar
+                            </div>
+
+                        </div>
 
                     </div>
 
-                </div>
+                </div><!-- /.cart-right -->
 
-                <!-- RIGHT -->
-                <!-- RIGHT -->
-<div class="cart-right">
+            </div><!-- /.cart-layout -->
 
-    <div class="cart-summary">
+        </form>
 
-        <h2 class="summary-title">
-            Order Summary
-        </h2>
+    </div><!-- /.container -->
 
-        <div class="summary-box">
+</div><!-- /.cart-page -->
 
-            <!-- SUBTOTAL -->
-            <div class="summary-row">
+<script>
+jQuery(function($){
 
-                <span>
-                    Subtotal
-                </span>
+    /* PLUS */
+    $(document).on('click', '.qty-plus', function(){
+        let wrap  = $(this).closest('.custom-qty-wrap-cart');
+        let input = wrap.find('.qty-input');
+        let qty   = parseInt(input.val());
+        qty++;
+        input.val(qty);
+        wrap.find('.qty-number').text(qty);
+        updateCart();
+    });
 
-                <span>
-                    <?php wc_cart_totals_subtotal_html(); ?>
-                </span>
+    /* MINUS */
+    $(document).on('click', '.qty-minus', function(){
+        let wrap  = $(this).closest('.custom-qty-wrap-cart');
+        let input = wrap.find('.qty-input');
+        let qty   = parseInt(input.val());
+        if(qty > 1){
+            qty--;
+            input.val(qty);
+            wrap.find('.qty-number').text(qty);
+            updateCart();
+        }
+    });
 
-            </div>
+    /* AJAX UPDATE CART */
+    function updateCart(){
+        let form     = $('.woocommerce-cart-form');
+        let formData = form.serialize();
+        formData    += '&update_cart=Update+Cart';
 
-            <!-- SHIPPING -->
-            <div class="summary-row">
+        $.ajax({
+            type: 'POST',
+            url: wc_cart_params.cart_url,
+            data: formData,
+            beforeSend: function(){
+                $('.cart-page').addClass('loading');
+            },
+            success: function(){
+                $('.cart-page').load(
+                    window.location.href + ' .cart-page > *',
+                    function(){
+                        $('.cart-page').removeClass('loading');
+                    }
+                );
+            }
+        });
+    }
 
-                <span>
-                    Shipping
-                </span>
+});
+</script>
 
-                <span>
-                    <?php wc_cart_totals_shipping_html(); ?>
-                </span>
-
-            </div>
-
-            <!-- TAX -->
-            <?php foreach ( WC()->cart->get_tax_totals() as $code => $tax ) : ?>
-
-                <div class="summary-row">
-
-                    <span>
-                        <?php echo esc_html( $tax->label ); ?>
-                    </span>
-
-                    <span>
-                        <?php echo wp_kses_post( $tax->formatted_amount ); ?>
-                    </span>
-
-                </div>
-
-            <?php endforeach; ?>
-
-            <!-- TOTAL -->
-            <div class="summary-total">
-
-                <span>
-                    Total
-                </span>
-
-                <span>
-                    <?php wc_cart_totals_order_total_html(); ?>
-                </span>
-
-            </div>
-
-            <!-- CHECKOUT BUTTON -->
-            <a
-                href="<?php echo esc_url( wc_get_checkout_url() ); ?>"
-                class="checkout-btn"
-            >
-                Proceed to Checkout
-            </a>
-
-            <!-- NOTE -->
-            <div class="summary-note">
-
-                Every purchase supports tribal communities
-                in Palghar
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</form>
+<?php do_action( 'woocommerce_after_cart' ); ?>
