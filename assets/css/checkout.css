@@ -296,8 +296,12 @@
             margin-top: 4px;
             border-top: 2px solid var(--border);
         }
-        .summary-total span:first-child { font-size: 15px; font-weight: 600; color: var(--text-dark); }
-        .total-amount { font-size: 22px; font-weight: 700; color: var(--green-dark); }
+        .summary-total span:first-child { font-size: 20px;
+    font-weight: 400;
+    color: #2D5F3F; }
+        .total-amount { font-size: 30px;
+    font-weight: 400;
+    color: #4A7C59; }
  
         /* Secure payment note */
         .secure-note {
@@ -309,9 +313,20 @@
             background: var(--green-bg);
             border-radius: var(--radius-sm);
         }
-        .secure-note svg { width: 15px; height: 15px; color: var(--green-light); flex-shrink: 0; margin-top: 1px; }
-        .secure-note-text { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
-        .secure-note-text strong { display: block; color: var(--green-light); font-weight: 600; margin-bottom: 2px; }
+        .secure-note svg {     width: 16px;
+    height: 16px;
+    color: #4A7C59;
+    flex-shrink: 0;
+    margin-top: 1px; }
+        .secure-note-text {     font-size: 12px;
+    color: #6B8E7C;
+    font-weight: 400;
+    line-height: 16px; }
+        .secure-note-text strong { display: block;
+    color: #2D5F3F;
+    font-weight: 400;
+    margin-bottom: 2px;
+    font-size: 14px; }
  
         /* ── FOOTER ── */
         .site-footer { background: #1a3320; color: rgba(255,255,255,.75); padding: 48px 0 0; margin-top: auto; }
