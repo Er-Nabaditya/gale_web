@@ -5,7 +5,22 @@
 
 /* ══ CTA BANNER ════════════════════ */
 .gale-cta-banner {
-  background-color: var(--green-dark);
+  background: linear-gradient(
+    to bottom,
+    #4a7c59,
+    #487a57,
+    #457755,
+    #437552,
+    #407250,
+    #3e704e,
+    #3b6d4c,
+    #396b4a,
+    #376948,
+    #346645,
+    #326443,
+    #2f6141,
+    #2d5f3ffc
+  );
   padding: 70px 0;
   text-align: center;
 }
@@ -63,7 +78,22 @@
 
 /* ══ MAIN FOOTER ════════════════════ */
 .gale-footer {
-  background-color: #14532d;
+  background: linear-gradient(
+    to bottom,
+    #2d5f3f,
+    #2b5d3d,
+    #295b3b,
+    #275939,
+    #255737,
+    #235535,
+    #215333,
+    #1f5131,
+    #1d4f2f,
+    #1b4d2d,
+    #194b2b,
+    #174929,
+    #154727
+  );
   padding: 60px 0 0;
   color: #ffffff;
 }

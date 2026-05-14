@@ -119,15 +119,120 @@ get_header();
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════
+     SECTION 4 — PRODUCTS SLIDER
+════════════════════════════════════════════ -->
 
-<<<<<<< HEAD
-=======
-<!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
- print_r($productss); -->
+<section class="gale-products">
+  <div class="container">
+    <h2>Products</h2>
+    <p class="section-sub">
+      Naturally sourced, traditionally processed, and ethically produced
+    </p>
 
+    <div class="products-slider-wrap">
 
+      <!-- Left Arrow -->
+      <button class="slider-arrow prev" id="sliderPrev">
+        <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/left_arrow.png" alt="Previous">
+      </button>
 
->>>>>>> origin/sheetal-dev
+      <!-- Slider Viewport -->
+      <div class="products-slider-viewport">
+        <div class="products-slider" id="productsSlider">
+
+          <?php
+          $args = array(
+            'post_type'      => 'product',
+            'posts_per_page' => 10,
+            'post_status'    => 'publish',
+            'orderby'        => 'date',
+            'order'          => 'DESC',
+          );
+
+          $products = new WP_Query($args);
+
+          if ($products->have_posts()) :
+            while ($products->have_posts()) : $products->the_post();
+              $product = wc_get_product(get_the_ID());
+          ?>
+
+              <div class="product-slide">
+
+                <!-- Product Image -->
+                <div class="product-img-wrap">
+                  <?php if (has_post_thumbnail()) : ?>
+                    <a href="<?php the_permalink(); ?>">
+                      <?php the_post_thumbnail('large', array('class' => 'product-thumb')); ?>
+                    </a>
+                  <?php else : ?>
+                    <div class="product-img-placeholder"></div>
+                  <?php endif; ?>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+
+                  <!-- Title -->
+                  <h4>
+                    <a href="<?php the_permalink(); ?>">
+                      <?php the_title(); ?>
+                    </a>
+                  </h4>
+
+                  <!-- Short Description -->
+                  <p class="product-short-desc">
+                    <?php echo wp_trim_words(get_the_excerpt(), 30); ?>
+                  </p>
+
+                  <!-- Product Features (WYSIWYG / Textarea field) -->
+                  <?php
+                  $product_features = get_field('health_benefits'); // ACF field name
+                  if (!empty($product_features)) :
+                  ?>
+                    <ul class="product-features-list">
+                      <?php
+                      echo wp_kses_post($product_features);
+                      ?>
+                    </ul>
+                  <?php endif; ?>
+
+                  <!-- Price + Button -->
+                  <div class="product-bottom">
+                    <div class="product-price">
+                      
+                      <?php echo $product->get_price_html(); ?>
+                    </div>
+
+                    <a href="<?php echo esc_url($product->add_to_cart_url()); ?>"
+                      class="btn-buynow">
+                      Buy Now
+                    </a>
+                  </div>
+
+                </div>
+              </div>
+
+          <?php
+            endwhile;
+            wp_reset_postdata();
+          endif;
+          ?>
+
+        </div>
+      </div>
+
+      <!-- Right Arrow -->
+      <button class="slider-arrow next" id="sliderNext">
+        <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/right_arrow.png" alt="Next">
+      </button>
+    </div>
+
+    <!-- Dots -->
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+</section>
+
 
 <!-- ══════════════════════════════════════════
      SECTION 5 — FROM FARM TO PACK

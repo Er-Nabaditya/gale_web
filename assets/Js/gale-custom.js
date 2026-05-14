@@ -38,98 +38,168 @@
       });
     }
 
-    // ══ 3. PRODUCTS SLIDER ══════════════════
-    // ══ PRODUCTS SLIDER ══
-    const slider = document.getElementById("productsSlider");
-    const prevBtn = document.getElementById("sliderPrev");
-    const nextBtn = document.getElementById("sliderNext");
-    const dotsWrap = document.getElementById("sliderDots");
+    // ═══════════════════════════════════════
+    // PRODUCTS SLIDER (SLIDE + DOTS WORKING)
+    // ═══════════════════════════════════════
+    document.addEventListener("DOMContentLoaded", function () {
+      const slider = document.getElementById("productsSlider");
+      const viewport = document.querySelector(".products-slider-viewport");
+      const prevBtn = document.getElementById("sliderPrev");
+      const nextBtn = document.getElementById("sliderNext");
+      const dotsWrap = document.getElementById("sliderDots");
 
-    if (slider && prevBtn && nextBtn) {
-      let currentIndex = 0;
+      if (!slider || !viewport || !dotsWrap) return;
 
-      function getSlidesVisible() {
-        if (window.innerWidth <= 600) return 1;
-        if (window.innerWidth <= 992) return 2;
+      let currentPage = 0;
+      const GAP = 20; // CSS gap ke same
+
+      // Visible cards per screen
+      function getVisibleSlides() {
+        if (window.innerWidth <= 767) return 1;
+        if (window.innerWidth <= 991) return 2;
         return 3;
       }
 
+      // All slides
       function getSlides() {
         return slider.querySelectorAll(".product-slide");
       }
 
-      function getSlideWidth() {
-        const slides = getSlides();
-        if (!slides.length) return 0;
-        const style = window.getComputedStyle(slider);
-        const gap = parseFloat(style.gap) || 24;
-        return slides[0].offsetWidth + gap;
+      // Total pages
+      function getTotalPages() {
+        const totalSlides = getSlides().length;
+        const visibleSlides = getVisibleSlides();
+
+        if (totalSlides <= visibleSlides) {
+          return 1;
+        }
+
+        return Math.ceil(totalSlides / visibleSlides);
       }
 
+      // Build dots
       function buildDots() {
-        if (!dotsWrap) return;
         dotsWrap.innerHTML = "";
-        const total = getSlides().length;
-        const visible = getSlidesVisible();
-        const numDots = Math.ceil(total / visible);
-        for (let i = 0; i < numDots; i++) {
+
+        const totalPages = getTotalPages();
+
+        // Hamesha dots banao (even if 1 page)
+        for (let i = 0; i < totalPages; i++) {
           const dot = document.createElement("button");
-          dot.classList.add("slider-dot");
-          if (i === 0) dot.classList.add("active");
-          dot.addEventListener("click", () => goToSlide(i * visible));
+          dot.type = "button";
+          dot.className = "slider-dot";
+
+          if (i === currentPage) {
+            dot.classList.add("active");
+          }
+
+          dot.addEventListener("click", function () {
+            goToPage(i);
+          });
+
           dotsWrap.appendChild(dot);
         }
       }
 
+      // Update active dot
       function updateDots() {
-        if (!dotsWrap) return;
-        const visible = getSlidesVisible();
-        const activeDot = Math.floor(currentIndex / visible);
-        dotsWrap.querySelectorAll(".slider-dot").forEach((d, i) => {
-          d.classList.toggle("active", i === activeDot);
+        const dots = dotsWrap.querySelectorAll(".slider-dot");
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentPage);
         });
       }
 
-      function goToSlide(index) {
-        const slides = getSlides();
-        const visible = getSlidesVisible();
-        const max = Math.max(0, slides.length - visible);
-        currentIndex = Math.min(Math.max(index, 0), max);
-        const offset = currentIndex * getSlideWidth();
-        slider.style.transform = `translateX(-${offset}px)`;
-        slider.style.transition = "transform 0.4s ease";
-        updateDots();
+      // Update arrows
+      function updateArrows() {
+        const totalPages = getTotalPages();
+
+        if (prevBtn) {
+          prevBtn.disabled = currentPage === 0;
+        }
+
+        if (nextBtn) {
+          nextBtn.disabled = currentPage === totalPages - 1;
+        }
       }
 
-      prevBtn.addEventListener("click", () =>
-        goToSlide(currentIndex - getSlidesVisible()),
-      );
-      nextBtn.addEventListener("click", () =>
-        goToSlide(currentIndex + getSlidesVisible()),
-      );
+      // Slide function
+      function goToPage(pageIndex) {
+        const slides = getSlides();
+
+        if (!slides.length) return;
+
+        const visibleSlides = getVisibleSlides();
+        const totalPages = getTotalPages();
+
+        // Safe page index
+        currentPage = Math.max(0, Math.min(pageIndex, totalPages - 1));
+
+        // Single card width
+        const slideWidth = slides[0].getBoundingClientRect().width;
+
+        // One full page width
+        const pageWidth = (slideWidth + GAP) * visibleSlides;
+
+        // Move slider
+        const translateX = currentPage * pageWidth;
+
+        slider.style.transform = `translate3d(-${translateX}px, 0, 0)`;
+
+        updateDots();
+        updateArrows();
+      }
+
+      // Prev button
+      if (prevBtn) {
+        prevBtn.addEventListener("click", function () {
+          goToPage(currentPage - 1);
+        });
+      }
+
+      // Next button
+      if (nextBtn) {
+        nextBtn.addEventListener("click", function () {
+          goToPage(currentPage + 1);
+        });
+      }
 
       // Touch swipe
-      let touchStartX = 0;
-      slider.addEventListener(
-        "touchstart",
-        (e) => (touchStartX = e.touches[0].clientX),
-      );
-      slider.addEventListener("touchend", (e) => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) {
-          if (diff > 0) goToSlide(currentIndex + getSlidesVisible());
-          else goToSlide(currentIndex - getSlidesVisible());
+      let startX = 0;
+
+      viewport.addEventListener("touchstart", function (e) {
+        startX = e.touches[0].clientX;
+      });
+
+      viewport.addEventListener("touchend", function (e) {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+
+        if (Math.abs(diff) < 50) return;
+
+        if (diff > 0) {
+          goToPage(currentPage + 1);
+        } else {
+          goToPage(currentPage - 1);
         }
       });
 
-      window.addEventListener("resize", () => {
+      // Rebuild on resize
+      window.addEventListener("resize", function () {
+        currentPage = 0;
         buildDots();
-        goToSlide(0);
+
+        setTimeout(function () {
+          goToPage(0);
+        }, 100);
       });
 
-      buildDots();
-    }
-
+      // Initial load
+      setTimeout(function () {
+        buildDots();
+        goToPage(0);
+      }, 150);
+    });
     // ══ 4. SMOOTH SCROLL FOR ANCHOR LINKS ══
     $('a[href*="#"]')
       .not('[href="#"]')
