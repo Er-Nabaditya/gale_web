@@ -1,66 +1,44 @@
 /* ============================================================
    GALE LIVELIHOOD — product.css
-   Shared stylesheet for archive-product.php & single-product.php
+   Matches the product card design from the provided screenshot
    ============================================================ */
 
-/* ── Google Fonts (unified) ── */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600;700&family=Lato:wght@400;600;700&display=swap');
+/* ── Google Font ── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@600&display=swap');
 
-/* ──────────────────────────────────────────────
-   DESIGN TOKENS  (shared across both templates)
-────────────────────────────────────────────── */
+/* ── Design Tokens ── */
 :root {
-  /* Brand greens */
-  --clr-green-darkest: #2d5016;   /* sp: --green-dark   */
-  --clr-green-dark:    #2d5a27;   /* archive: --clr-green */
-  --clr-green-mid:     #4a7c59;   /* sp: --green-mid  / archive: --clr-green-btn */
-  --clr-green-light:   #6aaa3a;   /* sp: --green-light */
-  --clr-green-pale:    #e8f5e0;   /* sp: --green-pale  */
-  --clr-green-bg:      #f4f9ef;   /* sp: --green-bg    */
-  --clr-green-tint:    #e8f0e6;   /* archive: --clr-green-light */
+  --clr-bg:          #f0f0ee;
+  --clr-white:       #ffffff;
+  --clr-text:        #1a1a1a;
+  --clr-muted:       #5a5a5a;
+  --clr-green:       #2d5a27;
+  --clr-green-btn:   #2e5e28;
+  --clr-green-light: #e8f0e6;
+  --clr-border:      #e4e4e0;
+  --clr-price:       #1a1a1a;
+  --clr-check:       #3a7a34;
 
-  /* Neutrals */
-  --clr-bg:      #f0f0ee;
-  --clr-white:   #ffffff;
-  --clr-border:  #e4e4e0;
+  --font-body:    'DM Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
 
-  /* Text */
-  --clr-text:    #1a1a1a;
-  --clr-muted:   #5a5a5a;
-  --clr-text-mid:#3d4a30;         /* sp: --text-mid    */
-
-  /* Typography */
-  --font-body:    'DM Sans', 'Lato', 'Helvetica Neue', sans-serif;
-  --font-display: 'Playfair Display', Georgia, serif;
-
-  /* Radii */
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   16px;
-  --radius-pill: 50px;
-
-  /* Shadows */
-  --shadow-card:  0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.05);
+  --radius-card: 16px;
+  --radius-btn:  50px;
+  --shadow-card: 0 2px 12px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.05);
   --shadow-hover: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.07);
-  --shadow-sm:    0 1px 4px rgba(0,0,0,.07);
-  --shadow-md:    0 4px 16px rgba(0,0,0,.10);
 }
 
-/* ──────────────────────────────────────────────
-   RESET / BASE
-────────────────────────────────────────────── */
+/* ── Reset & Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html, body {
+html,
+body {
   font-family: var(--font-body);
   background: var(--clr-bg) !important;
   color: var(--clr-text);
   -webkit-font-smoothing: antialiased;
   width: 100%;
 }
-
-a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
 
 /* Kill black sidebars — fill all Understrap outer wrappers with page bg */
 #page,
@@ -70,6 +48,14 @@ img { display: block; max-width: 100%; }
 .site-content {
   background: var(--clr-bg) !important;
   width: 100%;
+}
+
+/* ── Match homepage container structure ── */
+/* Let Bootstrap .container handle the width just like homepage sections */
+.products-page-wrap {
+  background: linear-gradient(180deg, #F5F3ED 0%, #F7F5F1 20%, #F9F8F4 40%, #FBFAF8 60%, #FDFDFB 80%, #FFFFFF 100%);
+  width: 100%;
+  padding-bottom: 80px;
 }
 
 /* Ensure Understrap wrappers don't add extra padding/constraints */
@@ -84,21 +70,7 @@ img { display: block; max-width: 100%; }
   background: var(--clr-bg) !important;
 }
 
-
-/* ══════════════════════════════════════════════
-   ARCHIVE — archive-product.php
-   ══════════════════════════════════════════════ */
-
-/* ── Page Wrapper ── */
-.products-page-wrap {
-  background: linear-gradient(180deg,
-    #F5F3ED 0%, #F7F5F1 20%, #F9F8F4 40%,
-    #FBFAF8 60%, #FDFDFB 80%, #FFFFFF 100%);
-  width: 100%;
-  padding-bottom: 80px;
-}
-
-/* ── Breadcrumb (archive) ── */
+/* ── Breadcrumb ── */
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -106,16 +78,16 @@ img { display: block; max-width: 100%; }
   padding: 24px 0 16px;
   font-size: 16px;
   color: #6B8E7C;
-  line-height: 24px;
+  line-height:24px;
 }
 .breadcrumb a {
-  font-size: 16px;
+   font-size: 16px;
   color: #6B8E7C;
-  line-height: 24px;
+  line-height:24px;
   text-decoration: none;
   transition: color .2s;
 }
-.breadcrumb a:hover { color: var(--clr-green-dark); }
+.breadcrumb a:hover { color: var(--clr-green); }
 .breadcrumb__sep { color: var(--clr-muted); font-size: 1rem; }
 
 /* ── Page Hero ── */
@@ -129,18 +101,20 @@ img { display: block; max-width: 100%; }
   color: #2D5F3F;
   margin-bottom: 12px;
   line-height: 1.1;
-  font-weight: 500;
+  font-weight:500;
   line-height: 60px;
 }
 .page-hero p {
   font-size: 20px;
-  color: #6B8E7C;
+  color:#6B8E7C;
   max-width: 702px;
   line-height: 28px;
-  font-weight: 400;
+  font-weight:400;
 }
 
-/* ── Product Grid ── */
+/* ══════════════════════════════
+   PRODUCT GRID
+══════════════════════════════ */
 .products { margin-top: 8px; }
 
 .products__grid {
@@ -149,6 +123,7 @@ img { display: block; max-width: 100%; }
   gap: 28px;
 }
 
+/* ── Responsive breakpoints ── */
 @media (max-width: 900px) {
   .products__grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 }
@@ -156,10 +131,12 @@ img { display: block; max-width: 100%; }
   .products__grid { grid-template-columns: 1fr; gap: 16px; }
 }
 
-/* ── Card ── */
+/* ══════════════════════════════
+   CARD
+══════════════════════════════ */
 .card {
   background: var(--clr-white);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   overflow: hidden;
   display: flex;
@@ -172,7 +149,7 @@ img { display: block; max-width: 100%; }
   box-shadow: var(--shadow-hover);
 }
 
-/* Card Image */
+/* ── Card Image ── */
 .card__img-wrap {
   position: relative;
   width: 100%;
@@ -187,9 +164,11 @@ img { display: block; max-width: 100%; }
   display: block;
   transition: transform .4s ease;
 }
-.card:hover .card__img-wrap img { transform: scale(1.04); }
+.card:hover .card__img-wrap img {
+  transform: scale(1.04);
+}
 
-/* Card Body */
+/* ── Card Body ── */
 .card__body {
   padding: 20px 20px 0;
   display: flex;
@@ -197,7 +176,7 @@ img { display: block; max-width: 100%; }
   flex: 1;
 }
 
-/* Card Title */
+/* ── Card Title ── */
 .card__title {
   font-family: Inter, sans-serif;
   font-size: 24px;
@@ -206,19 +185,17 @@ img { display: block; max-width: 100%; }
   margin-bottom: 8px;
   line-height: 32px;
 }
-.card__title a { color: inherit; text-decoration: none; }
-.card__title a:hover { color: var(--clr-green-darkest); }
 
-/* Card Description */
+/* ── Card Description ── */
 .card__desc {
   font-size: 16px;
   color: #6B8E7C;
   line-height: 24px;
   margin-bottom: 16px;
-  font-weight: 400;
+  font-weight:400;
 }
 
-/* Feature List */
+/* ── Feature List ── */
 .card__features {
   list-style: none;
   margin-bottom: 20px;
@@ -233,8 +210,10 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 8px;
   line-height: 20px;
-  font-weight: 400;
+  font-weignt:400;
 }
+
+/* Custom SVG checkmark via pseudo-element */
 .card__features li::before {
   content: '';
   flex-shrink: 0;
@@ -247,7 +226,8 @@ img { display: block; max-width: 100%; }
   background-size: 10px 10px;
 }
 
-/* Card Footer */
+
+/* ── Card Footer ── */
 .card__footer {
   display: flex;
   align-items: center;
@@ -258,12 +238,13 @@ img { display: block; max-width: 100%; }
   margin-top: auto;
 }
 
-/* Price */
+/* ── Price ── */
 .card__price {
   font-size: 24px;
   font-weight: 400;
-  line-height: 32px;
-  color: #4A7C59;
+  line-height:32px;
+  color: #4A7C59 !important;
+
 }
 .card__price sub {
   font-size: 16px;
@@ -271,17 +252,21 @@ img { display: block; max-width: 100%; }
   color: #6B8E7C;
   vertical-align: baseline;
   margin-left: 2px;
-  line-height: 24px;
+  line-height:24px;
 }
 
-/* Buy Now Button */
+/* ── Buy Now Button ── */
 .card__btn {
   background: #4A7C59;
-  width: 175px;
+  width:175px;
   color: #fff;
   border: none;
-  border-radius: var(--radius-pill);
-  padding: 8px 16px;
+  border-radius: 33554400px;
+  padding: 10px 22px;
+  padding-top: 8px;
+padding-right: 16px;
+padding-bottom: 8px;
+padding-left: 16px;
   font-family: var(--font-body);
   font-size: .875rem;
   font-weight: 500;
@@ -291,54 +276,68 @@ img { display: block; max-width: 100%; }
   letter-spacing: .01em;
   text-align: center;
 }
-.card__btn:hover { background: #1f4219; transform: scale(1.03); }
-.card__btn:active { transform: scale(.98); }
+.card__btn:hover {
+  background: #1f4219;
+  transform: scale(1.03);
+}
+.card__btn:active {
+  transform: scale(.98);
+}
 
-/* ── Archive CTA Strip ── */
+/* ══════════════════════════════
+   CTA STRIP
+══════════════════════════════ */
 .cta-strip {
-  background: #F5F3ED;
+  background:#F5F3ED;
+  color: #fff;
   text-align: center;
   padding: 64px 24px;
+  
 }
 .cta-strip__icon {
   width: 64px;
   height: 64px;
   margin: 0 auto 20px;
 }
-.cta-strip__icon img { width: 100%; height: 100%; }
+.cta-strip__icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #fff;
+}
 .cta-strip h2 {
-  font-family: Inter, sans-serif;
-  font-size: 36px;
-  margin-bottom: 12px;
-  font-weight: 500;
-  line-height: 40px;
-  color: #2D5F3F;
+     font-family: inter, sans-serif;
+    font-size: 36px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    line-height: 40px;
+    color: #2D5F3F;
 }
 .cta-strip p {
-  font-size: 18px;
-  max-width: 650px;
-  margin: 0 auto 28px;
-  line-height: 28px;
-  font-weight: 400;
-  color: #6B8E7C;
+     font-size: 18px;
+    opacity: .85;
+    max-width: 650px;
+    margin: 0 auto 28px;
+    line-height: 28px;
+    font-weight: 400;
+    color: #6B8E7C;
 }
 .cta-strip__btn {
   display: inline-block;
-  background: #4A7C59;
-  color: #ffffff;
-  font-family: var(--font-body);
-  font-size: 18px;
-  font-weight: 500;
-  padding: 12px 32px;
-  border-radius: var(--radius-pill);
-  text-decoration: none;
-  transition: background .2s, color .2s, transform .15s;
-  line-height: 28px;
+    background: #4A7C59;
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 32px;
+    border-radius: var(--radius-btn);
+    text-decoration: none;
+    transition: background .2s, color .2s, transform .15s;
+    line-height: 28px;
 }
 .cta-strip__btn:hover {
-  background: var(--clr-green-tint);
-  color: var(--clr-green-dark);
+  background: var(--clr-green-light);
   transform: translateY(-2px);
+<<<<<<< HEAD
 }
 
 
@@ -823,3 +822,6 @@ button.btn.btn-outline-primary {
 .custom-cart-btn:hover {
     background: #3d6545 !important;
 }
+=======
+}
+>>>>>>> 727437bc187b492baa854f69694d67bea70bb491

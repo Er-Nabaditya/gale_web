@@ -119,15 +119,15 @@ get_header();
   </div>
 </section>
 
-<!-- ══════════════════════════════════════════
-     SECTION 4 — PRODUCTS SLIDER
-════════════════════════════════════════════ -->
 
+<<<<<<< HEAD
 <!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
  print_r($productss); -->
 
 
 
+=======
+>>>>>>> 727437bc187b492baa854f69694d67bea70bb491
 
 <!-- ══════════════════════════════════════════
      SECTION 5 — FROM FARM TO PACK
