@@ -590,6 +590,7 @@ img {
 }
 
 .section-content-box {
+<<<<<<< HEAD
   background: linear-gradient(
     135deg,
     #e8f5e9 0%,
@@ -613,6 +614,19 @@ img {
   font-size: 18px;
   line-height: 29.25px;
   letter-spacing: 0px;
+=======
+   background: linear-gradient(135deg, #E8F5E9 0%, #EAF6EB 10%, #EDF7ED 20%, #EFF8F0 30%, #F1F9F2 40%, #F3FAF4 50%, #F6FBF6 60%, #F8FCF8 70%, #FAFDFB 80%, #FDFEFD 90%, #FFFFFF 100%);
+    border-radius: 18px;
+    padding: 30px;
+    color: #6B8E7C;
+    font-family: Inter;
+font-weight: 400;
+font-style: Regular;
+font-size: 17px;
+line-height: 29.25px;
+letter-spacing: 0px;
+
+>>>>>>> origin/sheetal-dev
 }
 .section-content-box.health-benefits {
   background: #f8f5ed;

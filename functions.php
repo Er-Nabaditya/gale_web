@@ -109,6 +109,25 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   
 remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
 
+function custom_cart_styles() {
+
+    if ( is_cart() ) {
+
+        wp_enqueue_style(
+            'custom-cart',
+            get_template_directory_uri() . '/assets/css/cart.css',
+            array(),
+            '1.0'
+        );
+
+    }
+
+}
+
+add_action(
+    'wp_enqueue_scripts',
+    'custom_cart_styles'
+);
 
 add_action(
     'add_meta_boxes',

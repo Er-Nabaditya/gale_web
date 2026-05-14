@@ -19,6 +19,7 @@ Text Domain: gale-livelihood-child
 @import url("assets/css/home.css");
 @import url("assets/css/product.css");
 @import url("assets/css/footer.css");
+@import url("assets/css/cart.css");
 
 /* ══ CSS VARIABLES ══════════════════════════ */
 :root {
