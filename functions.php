@@ -15,6 +15,7 @@ function gale_enqueue_styles()
     $ver = wp_get_theme()->get('Version');
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	wp_enqueue_style(
 		'understrap-parent',
 		get_template_directory_uri() . '/css/child-theme.min.css',
@@ -53,6 +54,8 @@ function gale_enqueue_styles()
 		'1.0.0'
 	);
 =======
+=======
+>>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
     wp_enqueue_style(
         'understrap-parent',
         get_template_directory_uri() . '/css/child-theme.min.css',
@@ -89,7 +92,10 @@ function gale_enqueue_styles()
         array('gale-style'),
         '1.0.0'
     );
+<<<<<<< HEAD
 >>>>>>> 727437bc187b492baa854f69694d67bea70bb491
+=======
+>>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
 
     wp_enqueue_style(
         'gale-google-fonts',
@@ -101,7 +107,7 @@ function gale_enqueue_styles()
     wp_enqueue_script('jquery');
     wp_enqueue_script(
         'gale-js',
-        get_stylesheet_directory_uri() . '/js/gale-custom.js',
+        get_stylesheet_directory_uri() . '/assets/js/gale-custom.js',
         array('jquery'),
         '1.0.0',
         true
@@ -143,12 +149,21 @@ add_filter('woocommerce_enqueue_styles', '__return_empty_array');
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 ); // removes "added to cart" notices
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count',       20 ); // removes "Showing all 4 results"
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   30 ); // removes "Default sorting" dropdown
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 remove_action( 'woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10 );
+=======
+remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
+remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10); // removes "added to cart" notices
+remove_action('woocommerce_before_shop_loop', 'woocommerce_result_count',       20); // removes "Showing all 4 results"
+remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   30); // removes "Default sorting" dropdown
+remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
+remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
+>>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
 
 function custom_cart_styles() {
 
@@ -175,7 +190,8 @@ add_action(
     'custom_product_features_metabox'
 );
 
-function custom_product_features_metabox() {
+function custom_product_features_metabox()
+{
 
     add_meta_box(
         'custom_product_features',
@@ -185,20 +201,20 @@ function custom_product_features_metabox() {
         'normal',
         'high'
     );
-
 }
 add_action(
     'post_edit_form_tag',
     'custom_product_features_form_tag'
 );
 
-function custom_product_features_form_tag() {
+function custom_product_features_form_tag()
+{
 
     echo ' enctype="multipart/form-data"';
-
 }
 
-function custom_product_features_callback( $post ) {
+function custom_product_features_callback($post)
+{
 
     wp_nonce_field(
         'save_custom_product_features',
@@ -212,17 +228,17 @@ function custom_product_features_callback( $post ) {
     );
 
     if (
-        empty( $features ) ||
-        ! is_array( $features )
+        empty($features) ||
+        ! is_array($features)
     ) {
         $features = array();
     }
 
-    ?>
+?>
 
     <div id="features-wrapper">
 
-        <?php foreach ( $features as $index => $feature ) : ?>
+        <?php foreach ($features as $index => $feature) : ?>
 
             <div class="feature-item">
 
@@ -236,10 +252,9 @@ function custom_product_features_callback( $post ) {
                     <input
                         type="text"
                         name="product_features[<?php echo $index; ?>][title]"
-                        value="<?php echo esc_attr( $feature['title'] ?? '' ); ?>"
+                        value="<?php echo esc_attr($feature['title'] ?? ''); ?>"
                         placeholder="Feature Title"
-                        class="widefat"
-                    >
+                        class="widefat">
 
                 </p>
 
@@ -255,8 +270,7 @@ function custom_product_features_callback( $post ) {
                         name="product_features[<?php echo $index; ?>][content]"
                         placeholder="Feature Content"
                         class="widefat"
-                        rows="4"
-                    ><?php echo esc_textarea( $feature['content'] ?? '' ); ?></textarea>
+                        rows="4"><?php echo esc_textarea($feature['content'] ?? ''); ?></textarea>
 
                 </p>
 
@@ -265,8 +279,7 @@ function custom_product_features_callback( $post ) {
                 <input
                     type="hidden"
                     name="product_features[<?php echo $index; ?>][old_icon]"
-                    value="<?php echo esc_url( $feature['icon'] ?? '' ); ?>"
-                >
+                    value="<?php echo esc_url($feature['icon'] ?? ''); ?>">
 
 
                 <!-- IMAGE UPLOAD -->
@@ -279,15 +292,13 @@ function custom_product_features_callback( $post ) {
                     <input
                         type="file"
                         name="product_feature_icon_<?php echo $index; ?>"
-                        class="widefat"
-                    >
+                        class="widefat">
 
                 </p>
-            
+
                 <button
                     type="button"
-                    class="button remove-feature"
-                >
+                    class="button remove-feature">
                     Remove
                 </button>
 
@@ -302,21 +313,19 @@ function custom_product_features_callback( $post ) {
     <button
         type="button"
         class="button button-primary"
-        id="add-feature"
-    >
+        id="add-feature">
         Add Feature
     </button>
 
 
     <script>
+        jQuery(document).ready(function($) {
 
-    jQuery(document).ready(function($){
+            let index = <?php echo count($features); ?>;
 
-        let index = <?php echo count( $features ); ?>;
+            $('#add-feature').on('click', function() {
 
-        $('#add-feature').on('click', function(){
-
-            let html = `
+                let html = `
 
                 <div class="feature-item">
 
@@ -383,47 +392,44 @@ function custom_product_features_callback( $post ) {
 
             `;
 
-            $('#features-wrapper').append(html);
+                $('#features-wrapper').append(html);
 
-            index++;
+                index++;
+
+            });
+
+            $(document).on(
+                'click',
+                '.remove-feature',
+                function() {
+
+                    $(this)
+                        .closest('.feature-item')
+                        .remove();
+
+                }
+            );
 
         });
-
-        $(document).on(
-            'click',
-            '.remove-feature',
-            function(){
-
-                $(this)
-                    .closest('.feature-item')
-                    .remove();
-
-            }
-        );
-
-    });
-
     </script>
 
 
     <style>
+        .feature-item {
+            background: #f8f8f8;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
 
-    .feature-item{
-        background:#f8f8f8;
-        padding:20px;
-        margin-bottom:20px;
-        border:1px solid #ddd;
-        border-radius:8px;
-    }
-
-    .feature-item input,
-    .feature-item textarea{
-        margin-top:8px;
-    }
-
+        .feature-item input,
+        .feature-item textarea {
+            margin-top: 8px;
+        }
     </style>
 
-    <?php
+<?php
 }
 
 add_action(
@@ -431,10 +437,11 @@ add_action(
     'save_custom_product_features'
 );
 
-function save_custom_product_features( $post_id ) {
+function save_custom_product_features($post_id)
+{
 
     if (
-        ! isset( $_POST['custom_product_features_nonce'] )
+        ! isset($_POST['custom_product_features_nonce'])
     ) {
         return;
     }
@@ -449,18 +456,18 @@ function save_custom_product_features( $post_id ) {
     }
 
     if (
-        defined( 'DOING_AUTOSAVE' ) &&
+        defined('DOING_AUTOSAVE') &&
         DOING_AUTOSAVE
     ) {
         return;
     }
 
 
-    if ( isset( $_POST['product_features'] ) ) {
+    if (isset($_POST['product_features'])) {
 
         $saved_features = array();
 
-        foreach ( $_POST['product_features'] as $index => $feature ) {
+        foreach ($_POST['product_features'] as $index => $feature) {
 
             $image_url = '';
 
@@ -472,24 +479,16 @@ function save_custom_product_features( $post_id ) {
 
             if (
                 isset(
-                    $_FILES[
-                        'product_feature_icon_' . $index
-                    ]
+                    $_FILES['product_feature_icon_' . $index]
                 ) &&
-                ! empty(
-                    $_FILES[
-                        'product_feature_icon_' . $index
-                    ]['name']
-                )
+                ! empty($_FILES['product_feature_icon_' . $index]['name'])
             ) {
 
                 require_once ABSPATH .
                     'wp-admin/includes/file.php';
 
                 $uploadedfile =
-                    $_FILES[
-                        'product_feature_icon_' . $index
-                    ];
+                    $_FILES['product_feature_icon_' . $index];
 
                 $upload_overrides = array(
                     'test_form' => false,
@@ -502,13 +501,11 @@ function save_custom_product_features( $post_id ) {
 
                 if (
                     $movefile &&
-                    ! isset( $movefile['error'] )
+                    ! isset($movefile['error'])
                 ) {
 
                     $image_url = $movefile['url'];
-
                 }
-
             } else {
 
                 /*
@@ -519,7 +516,6 @@ function save_custom_product_features( $post_id ) {
 
                 $image_url =
                     $feature['old_icon'] ?? '';
-
             }
 
 
@@ -544,7 +540,6 @@ function save_custom_product_features( $post_id ) {
                 ),
 
             );
-
         }
 
 
@@ -553,10 +548,9 @@ function save_custom_product_features( $post_id ) {
             '_product_features',
             $saved_features
         );
-
     }
-
 }
+<<<<<<< HEAD
 =======
 remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20);
 remove_action('woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10); // removes "added to cart" notices
@@ -565,3 +559,5 @@ remove_action('woocommerce_before_shop_loop', 'woocommerce_catalog_ordering',   
 remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
 >>>>>>> 727437bc187b492baa854f69694d67bea70bb491
+=======
+>>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0

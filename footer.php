@@ -10,11 +10,7 @@
       <!-- Col 1 — Logo + About -->
       <div class="footer-col footer-about">
         <div class="footer-logo">
-          <?php if (has_custom_logo()) : ?>
-            <?php the_custom_logo(); ?>
-          <?php else : ?>
-            <span class="footer-logo-text">🌿 GALE</span>
-          <?php endif; ?>
+          <img src="http://gale-livelihood.local/wp-content/uploads/2026/05/GALE-Logo-Og-1.png" alt="Gale Logo" />
         </div>
         <p>Supporting tribal communities in Palghar through sustainable initiatives, skill development, and ethical practices.</p>
       </div>
