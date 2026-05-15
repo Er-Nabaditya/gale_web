@@ -160,14 +160,6 @@ while ( have_posts() ) :
 
                     </div>
 
-                    <!-- SIZES -->
-                    <div class="product-sizes">
-
-                        <p>
-                            Available in 250g, 500g, and 1kg packs
-                        </p>
-
-                    </div>
 
                     <!-- CART -->
                     <div class="product-cart-wrap">
@@ -180,8 +172,9 @@ while ( have_posts() ) :
                         >
 
                             <!-- QTY -->
+                             <p>Quantity</p>
                             <div class="custom-qty-wrap">
-
+                            
                                 <button
                                     type="button"
                                     class="qty-btn qty-minus"
@@ -206,6 +199,14 @@ while ( have_posts() ) :
                                 </button>
 
                             </div>
+                            <!-- SIZES -->
+                    <div class="product-sizes">
+
+                        <p>
+                            Available in 250g, 500g, and 1kg packs
+                        </p>
+
+                    </div>
 
                             <!-- BUTTON -->
                             <button
@@ -222,6 +223,8 @@ while ( have_posts() ) :
                         </form>
 
                     </div>
+
+                     
 
                 </div>
 
