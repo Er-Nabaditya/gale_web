@@ -123,18 +123,15 @@ get_header();
      SECTION 4 — PRODUCTS SLIDER
 ════════════════════════════════════════════ -->
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 <!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
  print_r($productss); -->
-=======
+
 <section class="gale-products">
   <div class="container">
     <h2>Products</h2>
     <p class="section-sub">
       Naturally sourced, traditionally processed, and ethically produced
     </p>
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
 
     <div class="products-slider-wrap">
 
@@ -238,12 +235,6 @@ get_header();
     <div class="slider-dots" id="sliderDots"></div>
   </div>
 </section>
-
-<<<<<<< HEAD
-=======
->>>>>>> 727437bc187b492baa854f69694d67bea70bb491
-=======
->>>>>>> a275d3b04c98a11d147c27bb620728fc0762c9c0
 
 <!-- ══════════════════════════════════════════
      SECTION 5 — FROM FARM TO PACK

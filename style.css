@@ -139,7 +139,7 @@ p.demo_store {
 .woocommerce #respond input#submit {
   background-color: var(--green-dark) !important;
   color: #ffffff !important;
-  border-radius: 25px !important;
+  border-radius: 25px;
   font-weight: 500 !important;
   font-family: var(--font-body) !important;
   transition: all 0.3s !important;

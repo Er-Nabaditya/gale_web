@@ -74,7 +74,7 @@ do_action( 'woocommerce_before_cart' );
 
                                     <!-- PRICE -->
                                     <div class="cart-price">
-                                        <?php echo $price; ?>
+                                        <?php echo $price; ?><sub>/ 500g</sub>
                                     </div>
 
                                     <!-- QUANTITY + REMOVE (side by side) -->

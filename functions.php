@@ -453,6 +453,13 @@ remove_action('woocommerce_sidebar', 'woocommerce_get_sidebar', 10);
 remove_action('woocommerce_shop_loop_header', 'woocommerce_product_taxonomy_archive_header', 10);
 add_filter( 'woocommerce_cart_item_removed_notice_type', '__return_empty_string' );
 remove_action( 'woocommerce_after_cart_item_name', 'woocommerce_show_cart_item_data' );
+add_action( 'woocommerce_before_single_product', function() {
+    add_filter( 'woocommerce_price_trim_zeros', '__return_true' );
+});
+
+add_action( 'woocommerce_after_single_product', function() {
+    remove_filter( 'woocommerce_price_trim_zeros', '__return_true' );
+});
 add_filter( 'woocommerce_cart_item_name', function( $name, $cart_item, $cart_item_key ) {
     return strip_tags( $name );
 }, 10, 3 );

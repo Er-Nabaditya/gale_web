@@ -147,7 +147,7 @@ while ( have_posts() ) :
 
                             <?php echo wp_kses_post( $price_html ); ?>
 
-                            <sub>/ 500g</sub>
+                            <sub>per 500g</sub>
 
                         </div>
 
@@ -385,7 +385,7 @@ while ( have_posts() ) :
                     </h2>
 
                     <p>
-                        Support sustainable livelihoods while choosing natural products.
+                        Support sustainable livelihoods while choosing natural products. Every<br> purchase makes a difference.
                     </p>
 
                     <div class="cta-buttons">
