@@ -230,55 +230,47 @@ while ( have_posts() ) :
 
             </section>
 
-            <!-- FEATURES -->
-            <?php if ( ! empty( $product_features ) ) : ?>
+           <!-- FEATURES -->
+<?php if ( ! empty( $product_features ) ) : ?>
 
-                <section class="product-feature-cards">
+    <section class="product-feature-cards">
 
-                    <?php foreach ( $product_features as $feature ) : ?>
+        <div class="feature-wheat-decor">
+            <img
+                src="<?php echo esc_url(content_url('/uploads/2026/05/image1.png')); ?>"
+                alt=""
+                aria-hidden="true"
+            >
+        </div>
 
-                        <div class="feature-card">
+        <?php foreach ( $product_features as $feature ) : ?>
 
-                            <?php if ( ! empty( $feature['icon'] ) ) : ?>
+            <div class="feature-card">
 
-                                <div class="feature-icon">
+                <?php if ( ! empty( $feature['icon'] ) ) : ?>
+                    <div class="feature-icon">
+                        <img
+                            src="<?php echo esc_url( $feature['icon'] ); ?>"
+                            alt="<?php echo esc_attr( $feature['title'] ); ?>"
+                        >
+                    </div>
+                <?php endif; ?>
 
-                                    <img
-                                        src="<?php echo esc_url( $feature['icon'] ); ?>"
-                                        alt="<?php echo esc_attr( $feature['title'] ); ?>"
-                                    >
+                <?php if ( ! empty( $feature['title'] ) ) : ?>
+                    <h4><?php echo esc_html( $feature['title'] ); ?></h4>
+                <?php endif; ?>
 
-                                </div>
+                <?php if ( ! empty( $feature['content'] ) ) : ?>
+                    <p><?php echo esc_html( $feature['content'] ); ?></p>
+                <?php endif; ?>
 
-                            <?php endif; ?>
+            </div>
 
-                            <?php if ( ! empty( $feature['title'] ) ) : ?>
+        <?php endforeach; ?>
 
-                                <h4>
+    </section>
 
-                                    <?php echo esc_html( $feature['title'] ); ?>
-
-                                </h4>
-
-                            <?php endif; ?>
-
-                            <?php if ( ! empty( $feature['content'] ) ) : ?>
-
-                                <p>
-
-                                    <?php echo esc_html( $feature['content'] ); ?>
-
-                                </p>
-
-                            <?php endif; ?>
-
-                        </div>
-
-                    <?php endforeach; ?>
-
-                </section>
-
-            <?php endif; ?>
+<?php endif; ?>
 
             <!-- CULTIVATION -->
             <?php if ( $cultivation ) : ?>
@@ -299,24 +291,28 @@ while ( have_posts() ) :
 
             <?php endif; ?>
 
-            <!-- HEALTH BENEFITS -->
-            <?php if ( $health_benefits ) : ?>
+       <!-- HEALTH BENEFITS -->
+<?php if ( $health_benefits ) : ?>
 
-                <section class="product-info-section">
+    <section class="product-info-section health-benefits-section">
 
-                    <h2>
-                        Health Benefits
-                    </h2>
+        <div class="health-benefits-wheat">
+            <img
+                src="<?php echo esc_url( content_url( '/uploads/2026/05/wheat2.png' ) ); ?>"
+                alt=""
+                aria-hidden="true"
+            >
+        </div>
 
-                    <div class="section-content-box health-benefits">
+        <h2>Health Benefits</h2>
 
-                        <?php echo wp_kses_post( $health_benefits ); ?>
+        <div class="section-content-box health-benefits">
+            <?php echo wp_kses_post( $health_benefits ); ?>
+        </div>
 
-                    </div>
+    </section>
 
-                </section>
-
-            <?php endif; ?>
+<?php endif; ?>
 
             <!-- NUTRITION -->
             <section class="product-info-section nutrition-section">
@@ -407,6 +403,14 @@ while ( have_posts() ) :
 
             </section>
 
+        </div>
+          <!-- WHEAT DECOR BEFORE FOOTER -->
+        <div class="footer-wheat-decor">
+            <img
+                src="<?php echo esc_url( content_url( '/uploads/2026/05/wheat2.png' ) ); ?>"
+                alt=""
+                aria-hidden="true"
+            >
         </div>
 
     </div>
