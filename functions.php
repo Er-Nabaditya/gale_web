@@ -87,7 +87,6 @@ add_filter( 'wc_add_to_cart_message_html', '__return_empty_string' );
 
 function custom_product_features_metabox()
 {
-
     add_meta_box(
         'custom_product_features',
         'Product Features',
@@ -97,16 +96,7 @@ function custom_product_features_metabox()
         'high'
     );
 }
-add_action(
-    'post_edit_form_tag',
-    'custom_product_features_form_tag'
-);
-
-function custom_product_features_form_tag()
-{
-
-    echo ' enctype="multipart/form-data"';
-}
+add_action( 'add_meta_boxes', 'custom_product_features_metabox' );
 
 function custom_product_features_callback($post)
 {
