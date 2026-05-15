@@ -463,6 +463,11 @@ add_action( 'woocommerce_after_single_product', function() {
 add_filter( 'woocommerce_cart_item_name', function( $name, $cart_item, $cart_item_key ) {
     return strip_tags( $name );
 }, 10, 3 );
+add_filter( 'wc_price_args', function( $args ) {
+    // If price is a whole number, show 0 decimals
+
+    return $args;
+} );
 
 add_filter( 'woocommerce_cart_tax_totals', function( $tax_totals ) {
     foreach ( $tax_totals as $code => $tax ) {
@@ -479,3 +484,11 @@ add_filter( 'woocommerce_form_field_args', function( $args, $key, $value ) {
     $args['input_class']   = [ '' ];
     return $args;
 }, 10, 3 );
+
+// Remove coupon form from checkout page
+add_filter( 'woocommerce_coupons_enabled', function( $enabled ) {
+    if ( is_checkout() ) {
+        return false;
+    }
+    return $enabled;
+} );

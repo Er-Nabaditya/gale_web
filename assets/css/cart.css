@@ -440,7 +440,9 @@
   font-weight     : 500;
   color           : #1a1a1a;
 }
-
+.summary-total span.woocommerce-Price-currencySymbol{
+    font-size: 30px !important;
+}
 .summary-total span.woocommerce-Price-amount.amount {
     font-size: 30px;
     line-height: 36px;
@@ -585,7 +587,6 @@
   .cart-layout { grid-template-columns: 1fr; }
   .cart-right  { position: static; }
 
-  /* Summary stacks below cart items */
   .cart-summary { margin-top: 0; }
 
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -594,38 +595,95 @@
 /* ── Mobile (max 600px) ── */
 @media (max-width: 600px) {
 
-  .container       { padding: 0 20px; }
+  .container       { padding: 0 16px; }
   .cart-page-title { font-size: 28px; }
   .nav             { display: none; }
 
-  /* Card: 2-row layout on mobile */
+  /* Card: image + content side by side (row 1), subtotal full-width (row 2) */
   .cart-card {
     grid-template-columns : 76px 1fr;
     grid-template-rows    : auto auto;
-    gap                   : 12px 14px;
-    padding               : 14px 16px;
+    gap                   : 0 12px;
+    padding               : 14px;
+    align-items           : start;
   }
 
-  /* Subtotal spans full width, shows as row */
+  /* Image: row 1, col 1 */
+  .cart-card-image {
+    grid-column : 1;
+    grid-row    : 1;
+    width       : 76px;
+    height      : 76px;
+  }
+
+  /* Content: row 1, col 2 */
+  .cart-card-content {
+    grid-column : 2;
+    grid-row    : 1;
+    gap         : 5px;
+  }
+
+  .cart-product-title {
+    font-size   : 16px;
+    line-height : 22px;
+  }
+
+  .cart-price {
+    font-size : 18px;
+  }
+
+  /* Qty + Remove row */
+  .cart-qty-remove-row {
+    gap        : 8px;
+    flex-wrap  : nowrap;
+    margin-top : 6px;
+  }
+
+  .qty-btn-cart {
+    width  : 28px;
+    height : 28px;
+  }
+
+  .qty-number {
+    min-width : 32px;
+    font-size : 13px;
+  }
+
+  .remove-product {
+    font-size : 11px;
+    padding   : 4px 9px 4px 8px;
+  }
+
+  /* Subtotal: row 2, spans full width */
   .cart-subtotal {
     grid-column     : 1 / -1;
+    grid-row        : 2;
     flex-direction  : row;
     justify-content : space-between;
     align-items     : center;
     padding         : 10px 0 0;
+    margin-top      : 10px;
     border-top      : 1px solid #eef2ee;
     text-align      : left;
+    min-width       : unset;
+    padding-left    : 0;
   }
 
+  .subtotal-label { font-size: 13px; }
+  .subtotal-price { font-size: 18px; line-height: 1.4; white-space: nowrap; }
+
   /* Order summary */
-  .cart-summary  { padding: 20px 18px; }
+  .cart-summary  { padding: 20px 16px; }
   .summary-title { font-size: 18px; }
 
-  .summary-total            { font-size: 14px; padding: 14px 0 16px; }
+  .summary-total               { font-size: 14px; padding: 14px 0 16px; }
   .summary-total .total-amount { font-size: 22px; }
+  .summary-total span.woocommerce-Price-currencySymbol {
+    font-size: 30px !important;
+}
 
-  .checkout-btn  { font-size: 14px; padding: 13px 0; }
-  .summary-note  { font-size: 12px; padding: 10px 14px; }
+  .checkout-btn { font-size: 14px; padding: 13px 0; }
+  .summary-note { font-size: 12px; padding: 10px 14px; }
 
-  .footer-grid   { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
 }

@@ -32,6 +32,20 @@
             margin: 0 auto;
             padding: 0 40px;
         }
+
+        .select2-container--default .select2-selection--single {
+    background-color: #f8f6f0 !important;
+    height: 44px;
+    padding: 0 14px;
+    background: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    }
  
         /* Back to cart */
         .back-to-cart {
@@ -309,12 +323,18 @@
             margin-top: 24px;
         
         }
-        .summary-total span:first-child { font-size: 20px;
+        .summary-total span { font-size: 20px;
     font-weight: 400;
     color: #2D5F3F; }
         .total-amount { font-size: 30px;
     font-weight: 400;
     color: #4A7C59; }
+
+    .summary-total span:nth-child{
+        font-size:30px;
+        font-weight:400;
+        color:#4A7C59;
+    }
  
         /* Secure payment note */
         .secure-note {
