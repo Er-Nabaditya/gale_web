@@ -123,6 +123,9 @@ get_header();
      SECTION 4 — PRODUCTS SLIDER
 ════════════════════════════════════════════ -->
 
+<!-- $productss = gale_enqueue_product_styles('product', 6, 'date', 'DESC');
+ print_r($productss); -->
+
 <section class="gale-products">
   <div class="container">
     <h2>Products</h2>
@@ -232,7 +235,6 @@ get_header();
     <div class="slider-dots" id="sliderDots"></div>
   </div>
 </section>
-
 
 <!-- ══════════════════════════════════════════
      SECTION 5 — FROM FARM TO PACK
